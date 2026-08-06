@@ -1,0 +1,82 @@
+:root {
+    --bg: #0B1120;
+    --bg-alt: #141C30;
+    --surface: #1B2540;
+    --primary: #2F6FED;
+    --primary-glow: #5B8CFF;
+    --gray: #B8C1D1;
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --radius: 14px;
+    --transition: 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand {
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-glow);
+}
+
+
+/* ---------- Encabezado de reserva ---------- */
+
+.reserva-header {
+    border-left: 4px solid var(--primary);
+    padding-left: 1rem;
+}
+
+
+/* ---------- Navbar ---------- */
+
+.navbar-uv {
+    background-color: var(--black);
+    border-bottom: 1px solid rgba(91, 140, 255, 0.15);
+}
+
+.navbar-uv .brand {
+    color: var(--white);
+    font-size: 1.4rem;
+}
+
+.navbar-uv .brand span {
+    color: var(--primary-glow);
+}
+
+.navbar-uv .nav-link {
+    color: var(--gray) !important;
+}
+
+.navbar-uv .nav-link:hover {
+    color: var(--primary-glow) !important;
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer-uv {
+    background-color: var(--black);
+    color: var(--gray);
+    padding: 2rem 0 1rem;
+}
