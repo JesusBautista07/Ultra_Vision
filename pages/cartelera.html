@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraVision | Cartelera</title>
+
+  <!-- Importa dos fuentes de Google Fonts: Orbitron (títulos, estilo futurista) e Inter (texto normal). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3"> <!-- sticky-top fija el navbar en la parte superior de la pantalla -->
+    <div class="container">
+      <a class="navbar-brand brand" href="../index.html">Ultra<span>Vision</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú"> <!-- botón para abrir el menú -->
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu"> <!-- menú colapsable -->
+        <ul class="navbar-nav ms-auto gap-lg-3 text-center"> <!-- lista de enlaces del menú -->
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="cartelera.html">Cartelera</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservas.html">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link" href="mis-boletos.html">Mis Boletos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
+        <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Peliculas favoritas guardadas">
+          ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Encabezado -->
+  <header class="hero-uv py-5">
+    <p class="eyebrow">Catálogo completo</p>
+    <h1 class="mb-0">Cartelera</h1>
+  </header>
+
+  <!-- Filtros -->
+  <section class="container mt-4">
+    <form id="formFiltros" class="row g-3 align-items-end" role="search"> <!-- role="search" indica que el formulario es de busqueda -->
+      <div class="col-12 col-md-5"> <!-- col-12 col-md-5 indica que el div ocupa 12 columnas en dispositivos pequeños y 5 columnas en dispositivos medianos y grandes -->
+        <label for="inputBuscar" class="form-label text-secondary small">Buscar película</label>
+        <input type="search" id="inputBuscar" class="form-control" placeholder="Ej: Batman, Toy Story, Avengers...">
+      </div>
+      <div class="col-6 col-md-3">
+        <label for="selectGenero" class="form-label text-secondary small">Género</label>
+        <select id="selectGenero" class="form-select">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3">
+        <label for="selectOrden" class="form-label text-secondary small">Ordenar por</label>
+        <select id="selectOrden" class="form-select">
+          <option value="popularidad">Popularidad</option>
+          <option value="calificacion">Mejor calificadas</option>
+          <option value="reciente">Más recientes</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-1">
+        <button type="submit" class="btn-uv-primary w-100">Ir</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Cartelera -->
+  <section class="container my-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2"> <!-- flex-wrap indica que los elementos se envuelvan en varias lineas si no caben en la pantalla -->
+      <p id="mensajeEstado" class="text-secondary mb-0"></p>
+      <div class="form-check"> <!-- form-check indica que es un checkbox del formulario -->
+        <input class="form-check-input" type="checkbox" id="checkSoloFavoritos">
+        <label class="form-check-label text-secondary small" for="checkSoloFavoritos">
+          Ver solo mis favoritos
+        </label>
+      </div>
+    </div>
+    <div class="row g-4" id="contenedorCartelera"></div>
+
+    <!-- Paginación -->
+    <nav aria-label="Paginación de cartelera" class="mt-5">
+      <ul class="pagination pagination-uv justify-content-center" id="paginacionCartelera"></ul> <!-- pagination-uv es una clase personalizada para los botones de la paginación de la cartelera que cambian de color al pasar el mouse -->
+    </nav>
+  </section>
+
+  <!-- Horarios -->
+  <section class="container my-5">
+    <h2 class="section-title">Horarios generales de funciones</h2>
+    <div class="table-responsive">
+      <table class="table table-uv">
+        <caption>Horario base aplicado a toda la cartelera (sujeto a disponibilidad por sala).</caption> <!-- caption es el encabezado de la tabla -->
+        <thead>
+          <tr>
+            <th scope="col">Franja</th>
+            <th scope="col">Horarios</th>
+            <th scope="col">Precio boleto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Tarde</th><td>3:00 pm · 4:00 pm</td><td>$10.000</td></tr>
+          <tr><th scope="row">Noche</th><td>6:00 pm · 7:30 pm</td><td>$12.000</td></tr>
+          <tr><th scope="row">Última función</th><td>9:00 pm</td><td>$9.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="footer-uv text-center text-md-start"> <!-- footer-uv tambien es una clase personalizada para el pie de página que cambia de color al pasar el mouse -->
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-4">
+          <h5 class="brand text-white">Ultra<span style="color: var(--uv-blue-glow);">Vision</span></h5>
+          <p class="small mb-0">Proyecto académico SENA — ADSO.<br>Datos de películas cortesía de TMDb.</p>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-white">Enlaces</h6>
+          <ul class="list-unstyled small">
+            <li><a href="cartelera.html">Cartelera</a></li>
+            <li><a href="reservas.html">Reservas</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-white">Horario de atención</h6>
+          <p class="small mb-0">Lunes a domingo<br>10:00 a.m. – 11:00 p.m.</p>
+        </div>
+      </div>
+      <hr class="border-secondary my-3">
+      <p class="small mb-0 text-center">&copy; 2026 UltraVision. Proyecto con fines educativos.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/cartelera.js"></script>
+</body>
+</html>

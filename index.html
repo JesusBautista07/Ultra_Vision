@@ -1,39 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraVision</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraVision | Inicio</title>
+  <meta name="description" content="UltraVision - Plataforma de cine: cartelera, reservas y más.">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Estilos propios -->
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
-        <div class="container">
-            <a class="navbar-brand brand" href="index.html">Ultra<span>Vision</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand" href="index.html">Ultra<span>Vision</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
         <span class="navbar-toggler-icon"></span>
       </button>
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto gap-lg-3 text-center">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/cartelera.html">Cartelera</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/reservas.html">Reservas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/mis-boletos.html">Mis Boletos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/contacto.html">Contacto</a></li>
-                </ul>
-                <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
-                <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Peliculas favoritas guardadas">
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-3 text-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/cartelera.html">Cartelera</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/reservas.html">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/mis-boletos.html">Mis Boletos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/contacto.html">Contacto</a></li>
+        </ul>
+        <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
+        <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Peliculas favoritas guardadas">
           ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
-                </span>
-            </div>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero-uv">
+    <p class="eyebrow">Ahora en cartelera</p>
+    <h1>El cine, sin límites</h1>
+    <p>Descubre estrenos, reserva tus asientos y vive la experiencia UltraVision desde donde estés.</p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="pages/cartelera.html" class="btn-uv-primary">Ver cartelera</a>
+      <a href="pages/reservas.html" class="btn-uv-outline">Reservar ahora</a>
+    </div>
+  </header>
+
+  <!-- ===================== CARRUSEL DE ESTRENOS ===================== -->
+  <section class="container my-5">
+    <h2 class="section-title">Estrenos destacados</h2>
+
+    <div id="carruselEstrenos" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner rounded-4" id="carruselInner">
+        <!-- Se llena dinámicamente desde js/app.js -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center align-items-center" style="height:400px; background-color: var(--uv-bg-alt);">
+            <span class="text-secondary">Cargando estrenos...</span>
+          </div>
         </div>
-    </nav>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carruselEstrenos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carruselEstrenos" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== POPULARES (CARDS) ===================== -->
+  <section class="container my-5">
+    <h2 class="section-title">Populares esta semana</h2>
+    <div class="row g-4" id="contenedorPopulares">
+      <!-- Cards generadas dinámicamente -->
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer-uv text-center text-md-start">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-4">
+          <h5 class="brand text-white">Ultra<span style="color: var(--uv-blue-glow);">Vision</span></h5>
+          <p class="small mb-0">Proyecto académico SENA — ADSO.<br>Datos de películas cortesía de TMDb.</p>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-white">Enlaces</h6>
+          <ul class="list-unstyled small">
+            <li><a href="pages/cartelera.html">Cartelera</a></li>
+            <li><a href="pages/reservas.html">Reservas</a></li>
+            <li><a href="pages/contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-white">Horario de atención</h6>
+          <p class="small mb-0">Lunes a domingo<br>10:00 a.m. – 11:00 p.m.</p>
+        </div>
+      </div>
+      <hr class="border-secondary my-3">
+      <p class="small mb-0 text-center">&copy; 2026 UltraVision. Proyecto con fines educativos.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Módulos propios -->
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

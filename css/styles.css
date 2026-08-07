@@ -1,82 +1,409 @@
+/* ==========================================================================
+   UltraVision — Hoja de estilos base
+   Paleta: Azul oscuro / Azul brillante / Gris claro / Negro / Blanco
+   ========================================================================== */
+
 :root {
-    --bg: #0B1120;
-    --bg-alt: #141C30;
-    --surface: #1B2540;
-    --primary: #2F6FED;
-    --primary-glow: #5B8CFF;
-    --gray: #B8C1D1;
-    --black: #0A0A0A;
-    --white: #FFFFFF;
-    --font-display: 'Orbitron', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --radius: 14px;
-    --transition: 0.25s ease;
+  /* Colores */
+  --uv-bg: #0B1120;
+  --uv-bg-alt: #141C30;
+  --uv-bg-card: #1B2540;
+  --uv-blue: #2F6FED;
+  --uv-blue-glow: #5B8CFF;
+  --uv-gray: #B8C1D1;
+  --uv-black: #0A0A0A;
+  --uv-white: #FFFFFF;
+
+  /* Tipografía */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Espaciados */
+  --uv-radius: 14px;
+  --uv-transition: 0.25s ease;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--white);
-    font-family: var(--font-body);
-    margin: 0;
-    padding: 0;
+  background-color: var(--uv-bg);
+  color: var(--uv-white);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-.brand {
-    font-family: var(--font-display);
-    letter-spacing: 0.5px;
+h1, h2, h3, h4, .brand {
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
 }
 
 a {
-    text-decoration: none;
-    color: var(--primary-glow);
+  text-decoration: none;
+  color: var(--uv-blue-glow);
 }
-
-
-/* ---------- Encabezado de reserva ---------- */
-
-.reserva-header {
-    border-left: 4px solid var(--primary);
-    padding-left: 1rem;
-}
-
 
 /* ---------- Navbar ---------- */
-
 .navbar-uv {
-    background-color: var(--black);
-    border-bottom: 1px solid rgba(91, 140, 255, 0.15);
+  background-color: var(--uv-black);
+  border-bottom: 1px solid rgba(91, 140, 255, 0.15);
 }
 
 .navbar-uv .brand {
-    color: var(--white);
-    font-size: 1.4rem;
+  color: var(--uv-white);
+  font-size: 1.4rem;
 }
 
 .navbar-uv .brand span {
-    color: var(--primary-glow);
+  color: var(--uv-blue-glow);
 }
 
 .navbar-uv .nav-link {
-    color: var(--gray) !important;
+  color: var(--uv-gray) !important;
+  transition: color var(--uv-transition);
 }
 
-.navbar-uv .nav-link:hover {
-    color: var(--primary-glow) !important;
+.navbar-uv .nav-link:hover,
+.navbar-uv .nav-link.active {
+  color: var(--uv-blue-glow) !important;
 }
 
+/* ---------- Hero (elemento distintivo: haz de proyector) ---------- */
+.hero-uv {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(47, 111, 237, 0.35), transparent 70%),
+              linear-gradient(180deg, var(--uv-bg) 0%, var(--uv-bg-alt) 100%);
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.hero-uv::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 2px;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(91, 140, 255, 0.8), transparent);
+  transform: translateX(-50%) rotate(0deg);
+  filter: blur(1px);
+  animation: uv-beam-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes uv-beam-sweep {
+  0%, 100% { transform: translateX(-50%) rotate(-12deg); opacity: 0.5; }
+  50% { transform: translateX(-50%) rotate(12deg); opacity: 0.9; }
+}
+
+.hero-uv .eyebrow {
+  color: var(--uv-blue-glow);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero-uv h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin: 0.5rem 0 1rem;
+}
+
+.hero-uv p {
+  color: var(--uv-gray);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* ---------- Botones ---------- */
+.btn-uv-primary {
+  background-color: var(--uv-blue);
+  color: var(--uv-white);
+  border: none;
+  border-radius: var(--uv-radius);
+  padding: 0.7rem 1.8rem;
+  font-weight: 600;
+  transition: background-color var(--uv-transition), transform var(--uv-transition);
+}
+
+.btn-uv-primary:hover {
+  background-color: var(--uv-blue-glow);
+  color: var(--uv-white);
+  transform: translateY(-2px);
+}
+
+.btn-uv-outline {
+  background-color: transparent;
+  color: var(--uv-white);
+  border: 1px solid var(--uv-gray);
+  border-radius: var(--uv-radius);
+  padding: 0.7rem 1.8rem;
+  transition: border-color var(--uv-transition), color var(--uv-transition);
+}
+
+.btn-uv-outline:hover {
+  border-color: var(--uv-blue-glow);
+  color: var(--uv-blue-glow);
+}
+
+/* ---------- Cards de película ---------- */
+.card-uv {
+  background-color: var(--uv-bg-card);
+  border: 1px solid rgba(184, 193, 209, 0.08);
+  border-radius: var(--uv-radius);
+  overflow: hidden;
+  transition: transform var(--uv-transition), box-shadow var(--uv-transition);
+}
+
+.card-uv:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(47, 111, 237, 0.25);
+}
+
+.card-uv img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.card-uv .card-body {
+  color: var(--uv-white);
+}
+
+.card-uv .card-body small {
+  color: var(--uv-gray);
+}
+
+/* ---------- Secciones de géneros ---------- */
+.section-title {
+  border-left: 4px solid var(--uv-blue);
+  padding-left: 0.8rem;
+  margin-bottom: 1.5rem;
+}
 
 /* ---------- Footer ---------- */
-
 .footer-uv {
-    background-color: var(--black);
-    color: var(--gray);
-    padding: 2rem 0 1rem;
+  background-color: var(--uv-black);
+  color: var(--uv-gray);
+  padding: 2.5rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(91, 140, 255, 0.15);
+}
+
+.footer-uv a {
+  color: var(--uv-gray);
+}
+
+.footer-uv a:hover {
+  color: var(--uv-blue-glow);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .hero-uv {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+}
+
+/* ---------- Accesibilidad: foco visible ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--uv-blue-glow);
+  outline-offset: 2px;
+}
+
+/* ---------- Modo claro (toggle) ---------- */
+body.light-mode {
+  --uv-bg: #F4F6FB;
+  --uv-bg-alt: #E7ECF7;
+  --uv-bg-card: #FFFFFF;
+  --uv-black: #FFFFFF;
+  --uv-gray: #4A5568;
+  --uv-white: #0B1120;
+}
+
+body.light-mode .navbar-uv {
+  border-bottom: 1px solid rgba(47, 111, 237, 0.15);
+}
+
+body.light-mode .navbar-uv .brand {
+  color: var(--uv-white);
+}
+
+body.light-mode .card-uv {
+  border: 1px solid rgba(11, 17, 32, 0.08);
+  box-shadow: 0 2px 10px rgba(11, 17, 32, 0.06);
+}
+
+body.light-mode .footer-uv {
+  border-top: 1px solid rgba(47, 111, 237, 0.15);
+}
+
+#toggleTema {
+  background: transparent;
+  border: 1px solid var(--uv-gray);
+  color: var(--uv-white);
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: border-color var(--uv-transition), transform var(--uv-transition);
+}
+
+#toggleTema:hover {
+  border-color: var(--uv-blue-glow);
+  transform: rotate(15deg);
+}
+
+/* ---------- Favoritos (corazón) ---------- */
+.btn-favorito {
+  background: rgba(10, 10, 10, 0.55);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.1rem;
+  transition: transform var(--uv-transition);
+}
+
+.btn-favorito:hover {
+  transform: scale(1.15);
+}
+
+.card-uv {
+  position: relative;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-uv::before {
+    animation: none;
+  }
+  .card-uv:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Barra de progreso (carga de la API) ---------- */
+.progress-uv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--uv-blue), var(--uv-blue-glow));
+  z-index: 2000;
+  transition: width 0.3s ease, opacity 0.4s ease;
+  box-shadow: 0 0 8px var(--uv-blue-glow);
+}
+
+/* ---------- Contador de favoritos (badge junto al toggle de tema) ---------- */
+.badge-favoritos {
+  background-color: var(--uv-blue);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  position: relative;
+  top: -1px;
+}
+
+.btn-favoritos-nav {
+  background: transparent;
+  border: 1px solid var(--uv-gray);
+  color: var(--uv-white);
+  border-radius: 50px;
+  padding: 0.35rem 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: border-color var(--uv-transition), color var(--uv-transition);
+}
+
+.btn-favoritos-nav:hover {
+  border-color: var(--uv-blue-glow);
+  color: var(--uv-blue-glow);
+}
+
+/* ---------- Paginación ---------- */
+.pagination-uv .page-link {
+  background-color: var(--uv-bg-card);
+  border-color: rgba(184, 193, 209, 0.15);
+  color: var(--uv-gray);
+}
+
+.pagination-uv .page-item.active .page-link {
+  background-color: var(--uv-blue);
+  border-color: var(--uv-blue);
+  color: #fff;
+}
+
+.pagination-uv .page-link:hover {
+  background-color: var(--uv-bg-alt);
+  color: var(--uv-blue-glow);
+}
+
+.pagination-uv .page-item.disabled .page-link {
+  background-color: var(--uv-bg-card);
+  opacity: 0.4;
+}
+
+/* ---------- Skeleton de carga ---------- */
+.skeleton-uv {
+  background: linear-gradient(90deg, var(--uv-bg-card) 25%, var(--uv-bg-alt) 37%, var(--uv-bg-card) 63%);
+  background-size: 400% 100%;
+  animation: skeletonShine 1.4s ease infinite;
+  border-radius: var(--uv-radius);
+  aspect-ratio: 2 / 3;
+}
+@keyframes skeletonShine {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-uv { animation: none; }
+}
+
+/* ---------- Tablas ---------- */
+.table-uv {
+  color: var(--uv-white);
+  --bs-table-bg: transparent;
+}
+.table-uv th {
+  color: var(--uv-blue-glow);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-color: rgba(184, 193, 209, 0.15) !important;
+}
+.table-uv td {
+  border-color: rgba(184, 193, 209, 0.1) !important;
+  vertical-align: middle;
+}
+.table-uv caption {
+  color: var(--uv-gray);
+}
+
+body.light-mode .table-uv {
+  color: var(--uv-white);
 }

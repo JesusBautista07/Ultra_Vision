@@ -70,5 +70,3 @@ function getPosterUrl(posterPath) {
 function getVideoUrl(videoKey) {
   return `https://www.youtube.com/watch?v=${videoKey}`;
 }
-
-export { getPopularMovies, searchMovies, getMovieDetail, getGenres, getMoviesByGenre, getPosterUrl, getVideoUrl }; // Exporta las funciones para su uso en otros archivos
