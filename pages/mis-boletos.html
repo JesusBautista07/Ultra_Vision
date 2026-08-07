@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--  -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraVision | Mis Boletos</title>
+
+    <!-- Importa dos fuentes de Google Fonts: Orbitron (títulos, estilo futurista) e Inter (texto normal). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand brand" href="../index.html">Ultra<span>Vision</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto gap-lg-3 text-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cartelera.html">Cartelera</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reservas.html">Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="mis-boletos.html">Mis Boletos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                </ul>
+                <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0"
+                    aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
+                <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0"
+                    title="Peliculas favoritas guardadas">
+                    ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="hero-uv py-5">
+        <p class="eyebrow">Tu cuenta</p>
+        <h1 class="mb-0">Mis Boletos</h1>
+    </header>
+
+    <!-- Listado de boletos -->
+    <section class="container my-5">
+        <div id="estadoVacio" class="text-center text-secondary py-5 d-none">
+            <p class="mb-3">Aún no tienes boletos reservados.</p>
+            <a href="reservas.html" class="btn-uv-primary">Reservar ahora</a>
+        </div>
+
+        <div class="row g-4" id="contenedorBoletos"></div>
+    </section>
+
+    <!-- Editar boleto (Modal) -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: var(--uv-bg-alt); color: var(--uv-white);">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Editar reserva</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <form id="formEditar">
+                    <div class="modal-body">
+                        <input type="hidden" id="editarId">
+
+                        <div class="mb-3">
+                            <label for="editarFuncion" class="form-label text-secondary small">Horario de
+                                función</label>
+                            <select id="editarFuncion" class="form-select">
+                                <option value="Hoy 3:00 PM">Hoy 3:00 PM</option>
+                                <option value="Hoy 6:00 PM">Hoy 6:00 PM</option>
+                                <option value="Hoy 9:00 PM">Hoy 9:00 PM</option>
+                                <option value="Mañana 4:00 PM">Mañana 4:00 PM</option>
+                                <option value="Mañana 7:30 PM">Mañana 7:30 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editarNombre" class="form-label text-secondary small">Nombre del
+                                comprador</label>
+                            <input type="text" id="editarNombre" class="form-control" required minlength="3">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editarEmail" class="form-label text-secondary small">Correo electrónico</label>
+                            <input type="email" id="editarEmail" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn-uv-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn-uv-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmar eliminacion (Modal) -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: var(--uv-bg-alt); color: var(--uv-white);">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Cancelar reserva</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">¿Seguro que deseas cancelar esta reserva? Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn-uv-outline" data-bs-dismiss="modal">Volver</button>
+                    <button type="button" id="btnConfirmarEliminar" class="btn btn-danger">Sí, cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de notificacion   -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toastNotificacion" class="toast align-items-center border-0" role="alert" aria-live="assertive"
+            aria-atomic="true" style="background-color: var(--uv-blue); color: white;">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMensaje">Acción realizada correctamente.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-uv text-center text-md-start">
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-md-4">
+                    <h5 class="brand text-white">Ultra<span style="color: var(--uv-blue-glow);">Vision</span></h5>
+                    <p class="small mb-0">Proyecto académico SENA — ADSO.<br>Datos de películas cortesía de TMDb.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white">Enlaces</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="cartelera.html">Cartelera</a></li>
+                        <li><a href="reservas.html">Reservas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white">Horario de atención</h6>
+                    <p class="small mb-0">Lunes a domingo<br>10:00 a.m. – 11:00 p.m.</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-3">
+            <p class="small mb-0 text-center">&copy; 2026 UltraVision. Proyecto con fines educativos.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/crud.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/mis-boletos.js"></script>
+</body>
+
+</html>

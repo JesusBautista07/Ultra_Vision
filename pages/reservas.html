@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--  -->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraVision | Reservas</title>
+
+    <!-- Importa dos fuentes de Google Fonts: Orbitron (títulos, estilo futurista) e Inter (texto normal). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 (solo para navbar/footer) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- Tailwind CSS (solo para la sección de reservas) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuracion personalizada de tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uvbg: "#0B1120",
+                        uvbgalt: "#141C30",
+                        uvcard: "#1B2540",
+                        uvblue: "#2F6FED",
+                        uvglow: "#5B8CFF",
+                        uvgray: "#B8C1D1",
+                    },
+                    fontFamily: {
+                        display: ["Orbitron", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body>
+
+    <!-- NAVBAR (Bootstrap)  -->
+    <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
+        <div class="container">
+            <!-- UltraVision logo -->
+            <a class="navbar-brand brand" href="../index.html">Ultra<span>Vision</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menú colapsable del navbar -->
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto gap-lg-3 text-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cartelera.html">Cartelera</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="reservas.html">Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mis-boletos.html">Mis Boletos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                </ul>
+                <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0"
+                    aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
+                <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0"
+                    title="Peliculas favoritas guardadas">
+                    ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reserva de asientos (Tailwind) -->
+    <main class="bg-uvbg min-h-screen py-10 px-4">
+        <div class="max-w-5xl mx-auto">
+
+            <p class="text-uvglow font-display text-xs tracking-widest uppercase mb-1">Reserva tu función</p>
+            <h1 class="text-white font-display text-3xl md:text-4xl mb-8">Elige tus asientos</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Datos de la función -->
+                <div class="lg:col-span-2 bg-uvbgalt rounded-2xl p-6">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="selectPelicula" class="block text-uvgray text-sm mb-1">Película</label>
+                            <select id="selectPelicula"
+                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                                <option value="">Cargando cartelera...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="selectFuncion" class="block text-uvgray text-sm mb-1">Horario</label>
+                            <select id="selectFuncion"
+                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                                <option value="Hoy 3:00 PM">Hoy 3:00 PM</option>
+                                <option value="Hoy 6:00 PM">Hoy 6:00 PM</option>
+                                <option value="Hoy 9:00 PM">Hoy 9:00 PM</option>
+                                <option value="Mañana 4:00 PM">Mañana 4:00 PM</option>
+                                <option value="Mañana 7:30 PM">Mañana 7:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Pantalla -->
+                    <div
+                        class="w-full h-2 bg-gradient-to-r from-transparent via-uvglow to-transparent rounded-full mb-1 opacity-70">
+                    </div>
+                    <p class="text-center text-uvgray text-xs uppercase tracking-widest mb-6">Pantalla</p>
+
+                    <!-- Grid de asientos -->
+                    <div id="mapaAsientos" class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto"></div>
+
+                    <!-- Leyenda -->
+                    <div class="flex flex-wrap gap-4 justify-center text-xs text-uvgray">
+                        <span class="flex items-center gap-1"><span
+                                class="w-4 h-4 rounded bg-uvcard border border-white/20 inline-block"></span>
+                            Disponible</span>
+                        <span class="flex items-center gap-1"><span
+                                class="w-4 h-4 rounded bg-uvblue inline-block"></span>
+                            Seleccionado</span>
+                        <span class="flex items-center gap-1"><span
+                                class="w-4 h-4 rounded bg-white/10 inline-block"></span>
+                            Ocupado</span>
+                    </div>
+                </div>
+
+                <!-- resumen de compra + formulario -->
+                <div class="bg-uvbgalt rounded-2xl p-6 h-fit">
+                    <h2 class="text-white font-display text-lg mb-4">Resumen de compra</h2>
+
+                    <div class="text-uvgray text-sm space-y-2 mb-4">
+                        <p>Asientos seleccionados: <span id="resumenCantidad" class="text-white font-semibold">0</span>
+                        </p>
+                        <p>Precio por boleto: <span class="text-white">$12.000</span></p>
+                        <p class="text-lg">Total: <span id="resumenTotal"
+                                class="text-uvglow font-display font-semibold">$0</span>
+                        </p>
+                    </div>
+
+                    <form id="formReserva" class="space-y-3" novalidate>
+                        <div>
+                            <label for="inputNombre" class="block text-uvgray text-sm mb-1">Nombre completo</label>
+                            <input type="text" id="inputNombre" required
+                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <p class="text-red-400 text-xs mt-1 hidden" data-error="nombre">Por favor ingresa tu nombre
+                                completo.</p>
+                        </div>
+
+                        <div>
+                            <label for="inputEmail" class="block text-uvgray text-sm mb-1">Correo electrónico</label>
+                            <input type="email" id="inputEmail" required
+                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <p class="text-red-400 text-xs mt-1 hidden" data-error="email">Ingresa un correo electrónico
+                                válido.</p>
+                        </div>
+
+                        <p class="text-red-400 text-xs hidden" data-error="asientos">Selecciona al menos un asiento.</p>
+
+                        <button type="submit"
+                            class="w-full bg-uvblue hover:bg-uvglow transition-colors text-white font-semibold rounded-lg py-2.5 mt-2">
+                            Confirmar reserva
+                        </button>
+                    </form>
+
+                    <div id="mensajeExito"
+                        class="hidden mt-4 bg-green-500/10 border border-green-400/30 text-green-300 text-sm rounded-lg p-3">
+                        ¡Reserva confirmada! Puedes verla en "Mis Boletos".
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--  Footer (Bootstrap)  -->
+    <footer class="footer-uv text-center text-md-start">
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-md-4">
+                    <h5 class="brand text-white">Ultra<span style="color: var(--uv-blue-glow);">Vision</span></h5>
+                    <p class="small mb-0">Proyecto académico SENA — ADSO.<br>Datos de películas cortesía de TMDb.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white">Enlaces</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="cartelera.html">Cartelera</a></li>
+                        <li><a href="reservas.html">Reservas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white">Horario de atención</h6>
+                    <p class="small mb-0">Lunes a domingo<br>10:00 a.m. – 11:00 p.m.</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-3">
+            <p class="small mb-0 text-center">&copy; 2026 UltraVision. Proyecto con fines educativos.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/crud.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/reservas.js"></script>
+</body>
+
+</html>
