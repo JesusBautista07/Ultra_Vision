@@ -1,89 +1,85 @@
-// Logica exclusivamente de detalle.html
+// Lógica exclusiva de pages/detalle.html
 
-// Llama la funcion cargarDetalle cuando el DOM cargue
-document.addEventListener("DOMContentLoaded", cargarDetalle);
+document.addEventListener("DOMContentLoaded", () => {
+  const parametros = new URLSearchParams(window.location.search);
+  const movieId = parametros.get("id");
 
-// Carga todo el detalle sobre la pelicula seleccionada
-async function cargarDetalle() {
-    const parametros = new URLSearchParams(window.location.search); //devuelve la parte de la URL que empieza con ?
-    const id = parametros.get("id");
-    const contenedor = document.getElementById("contenidoDetalle");
+  if (!movieId) {
+    mostrarError("No se especificó ninguna película.");
+    return;
+  }
 
-    // Muestra error si no se encontro el id de la pelicula
-    if (!id) {
-        contenedor.innerHTML = `<p class="text-danger">No se especificó ninguna película.</p>`;
-        return;
-    }
+  cargarDetalle(movieId);
+});
 
-    progresoInicio(); // Animacion de barra de carga
-    try {
-        const pelicula = await getMovieDetail(id);
-        pintarDetalle(pelicula);
-        progresoFin(); //Termina la animacion de carga
-    } catch (error) {
-        console.error(error);
-        progresoFin();
-        contenedor.innerHTML = `<p class="text-danger">No se pudo cargar la información de esta película.</p>`;
-    }
+// Pide a TMDb el detalle, créditos y videos de la película, y pinta la página
+async function cargarDetalle(movieId) {
+  try {
+    const pelicula = await getMovieDetail(movieId);
+    pintarDetalle(pelicula);
+  } catch (error) {
+    console.error("Error cargando el detalle:", error);
+    mostrarError("No se pudo cargar la información de esta película.");
+  }
 }
 
-// Muestra o pinta toda la info de la pelicula
+function mostrarError(mensaje) {
+  document.getElementById("contenidoDetalle").innerHTML = `
+    <p class="text-danger">${mensaje}</p>
+    <a href="../index.html" class="btn-uv-outline">Volver al inicio</a>`;
+}
+
+// Arma todo el contenido de la página con los datos de la película
 function pintarDetalle(pelicula) {
-    const contenedor = document.getElementById("contenidoDetalle");
-    const generos = pelicula.genres.map((g) => g.name).join(" · "); // transforma ese arreglo en uno solo con los nombres: ["Acción", "Aventura"]
-    const año = pelicula.release_date ? pelicula.release_date.split("-")[0] : "—"; // Guarda el año de extreno de la pelicula
-    const duracion = pelicula.runtime ? `${pelicula.runtime} min` : "—";// Guarda la duracion de la pelicula
+  const generos = pelicula.genres.map((g) => g.name).join(", ") || "—";
+  const anio = pelicula.release_date ? pelicula.release_date.split("-")[0] : "—";
+  const reparto = (pelicula.credits?.cast || []).slice(0, 6);
+  const trailerKey = obtenerTrailerKey(pelicula.videos);
 
-    const reparto = (pelicula.credits?.cast || []).slice(0, 8); // Guarda los repartos de la pelicula (solo los 8 primeros)
-    const trailer = (pelicula.videos?.results || []).find(
-        (v) => v.site === "YouTube" && v.type === "Trailer"
-    ); // Obtiene el trailer
-
-
-    // Inserta toda la informacion a la pantalla
-    contenedor.innerHTML = `
-    <div class="row g-5">
-      <div class="col-md-4">
-        <img src="${getPosterUrl(pelicula.poster_path)}" alt="Póster de ${pelicula.title}"  
-             class="img-fluid rounded-4 w-100">
+  document.getElementById("contenidoDetalle").innerHTML = `
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <img src="${getPosterUrl(pelicula.poster_path)}" alt="Póster de ${pelicula.title}"
+             class="w-100 rounded-4">
       </div>
-      <div class="col-md-8">
-        <p class="eyebrow mb-1">${generos}</p>x
+      <div class="col-12 col-md-8">
+        <p class="eyebrow mb-1">${generos}</p>
         <h1 class="mb-2">${pelicula.title}</h1>
-        <p class="text-secondary mb-3">${año} · ${duracion} · ⭐ ${pelicula.vote_average.toFixed(1)}</p> 
-        <p style="max-width: 700px;">${pelicula.overview || "Sin sinopsis disponible."}</p>
+        <p class="text-secondary mb-3">${anio} · ⭐ ${pelicula.vote_average.toFixed(1)}</p>
+        <p class="mb-4">${pelicula.overview || "Sin sinopsis disponible."}</p>
 
-        <div class="d-flex gap-3 flex-wrap mt-4">
+        <div class="d-flex gap-3 flex-wrap mb-4">
           <a href="reservas.html?movieId=${pelicula.id}" class="btn-uv-primary">Reservar boletos</a>
-          ${trailer ? `<button class="btn-uv-outline" id="btnVerTrailer">Ver trailer</button>` : ""}
+          ${trailerKey ? `<button class="btn-uv-outline" id="btnVerTrailer">Ver trailer</button>` : ""}
         </div>
 
-        <h5 class="mt-5 mb-3">Reparto principal</h5>
-        <div class="d-flex gap-3 flex-wrap">
-          ${reparto
-            .map(
-                (actor) => `
-            <div class="text-center" style="width: 90px;">
-              <img src="${actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : "https://placehold.co/200x200/1B2540/B8C1D1?text=%3F"}" 
-                   alt="${actor.name}" class="rounded-circle mb-1"  style="width: 70px; height: 70px; object-fit: cover;">
-              <p class="small mb-0">${actor.name}</p> <!-- Muestra nombre del actor -->
-              <p class="small text-secondary mb-0">${actor.character || ""}</p>
-            </div>`
-            )
-            .join("")}
+        <h5 class="mb-3">Reparto</h5>
+        <div class="d-flex flex-wrap gap-3">
+          ${reparto.map((actor) => `
+            <div style="width: 100px;">
+              <img src="${getPosterUrl(actor.profile_path)}" alt="Foto de ${actor.name}"
+                   class="rounded-3 mb-1" style="width: 100%; aspect-ratio: 2/3; object-fit: cover;">
+              <p class="small mb-0">${actor.name}</p>
+            </div>`).join("") || `<p class="text-secondary small">No hay información del reparto.</p>`}
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 
-    // Inserta el trailer de la pelicula
-    if (trailer) {
-        document.getElementById("btnVerTrailer").addEventListener("click", () => {
-            document.getElementById("contenedorTrailer").innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${trailer.key}" title="Trailer de ${pelicula.title}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>`;
-            new bootstrap.Modal(document.getElementById("modalTrailer")).show();
-        });
-    }
+  if (trailerKey) {
+    document.getElementById("btnVerTrailer").addEventListener("click", () => abrirTrailer(trailerKey));
+  }
+}
+
+// Busca el primer video de tipo "Trailer" publicado en YouTube
+function obtenerTrailerKey(videos) {
+  const lista = videos?.results || [];
+  const trailer = lista.find((v) => v.site === "YouTube" && v.type === "Trailer");
+  return trailer ? trailer.key : null;
+}
+
+// Inserta el iframe de YouTube dentro del modal y lo muestra
+function abrirTrailer(key) {
+  document.getElementById("contenedorTrailer").innerHTML = `
+    <iframe src="https://www.youtube.com/embed/${key}" allowfullscreen></iframe>`;
+  new bootstrap.Modal(document.getElementById("modalTrailer")).show();
 }

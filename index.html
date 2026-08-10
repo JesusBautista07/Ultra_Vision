@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UltraVision | Inicio</title>
   <meta name="description" content="UltraVision - Plataforma de cine: cartelera, reservas y más.">
 
-  <!-- Google Fonts -->
+  <!-- Fuentes de Google: Orbitron para títulos, Inter para el resto del texto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap 5, usado para el layout general (navbar, columnas, footer) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Estilos propios -->
+  <!-- Si no tienes icons/favicon.svg, borra esta línea para evitar el ícono roto -->
   <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
-  <!-- ===================== NAVBAR ===================== -->
+  <!-- Menú superior -->
   <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
     <div class="container">
       <a class="navbar-brand brand" href="index.html">Ultra<span>Vision</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+      <!-- data-bs-toggle y data-bs-target son de Bootstrap: abren/cierran el menú en celular -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
@@ -34,15 +39,20 @@
           <li class="nav-item"><a class="nav-link" href="pages/mis-boletos.html">Mis Boletos</a></li>
           <li class="nav-item"><a class="nav-link" href="pages/contacto.html">Contacto</a></li>
         </ul>
-        <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
-        <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Peliculas favoritas guardadas">
+
+        <!-- Cambia entre modo oscuro y claro (lógica en js/app.js) -->
+        <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" aria-label="Cambiar tema claro/oscuro"
+          title="Cambiar tema">🌙</button>
+
+        <!-- Contador de favoritos, se actualiza desde js/app.js -->
+        <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Películas favoritas guardadas">
           ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
         </span>
       </div>
     </div>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
+  <!-- Banner principal -->
   <header class="hero-uv">
     <p class="eyebrow">Ahora en cartelera</p>
     <h1>El cine, sin límites</h1>
@@ -53,39 +63,33 @@
     </div>
   </header>
 
-  <!-- ===================== CARRUSEL DE ESTRENOS ===================== -->
+  <!-- Carrusel de estrenos: empieza vacío, js/app.js lo llena con las 5 películas destacadas -->
   <section class="container my-5">
     <h2 class="section-title">Estrenos destacados</h2>
-
     <div id="carruselEstrenos" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner rounded-4" id="carruselInner">
-        <!-- Se llena dinámicamente desde js/app.js -->
         <div class="carousel-item active">
-          <div class="d-flex justify-content-center align-items-center" style="height:400px; background-color: var(--uv-bg-alt);">
+          <div class="d-flex justify-content-center align-items-center"
+            style="height:400px; background-color: var(--uv-bg-alt);">
             <span class="text-secondary">Cargando estrenos...</span>
           </div>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carruselEstrenos" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
+        <span class="carousel-control-prev-icon"></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carruselEstrenos" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
+        <span class="carousel-control-next-icon"></span>
       </button>
     </div>
   </section>
 
-  <!-- ===================== POPULARES (CARDS) ===================== -->
+  <!-- Grid de tarjetas de películas populares, también generado desde js/app.js -->
   <section class="container my-5">
     <h2 class="section-title">Populares esta semana</h2>
-    <div class="row g-4" id="contenedorPopulares">
-      <!-- Cards generadas dinámicamente -->
-    </div>
+    <div class="row g-4" id="contenedorPopulares"></div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer class="footer-uv text-center text-md-start">
     <div class="container">
       <div class="row gy-3">
@@ -111,10 +115,10 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Módulos propios -->
+  <!-- api.js debe cargar antes que app.js porque app.js usa sus funciones -->
   <script src="js/api.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

@@ -1,10 +1,5 @@
-/* ==========================================================================
-   UltraVision — Hoja de estilos base
-   Paleta: Azul oscuro / Azul brillante / Gris claro / Negro / Blanco
-   ========================================================================== */
-
+/* Colores y tipografías principales del sitio, reutilizables en todo el CSS */
 :root {
-  /* Colores */
   --uv-bg: #0B1120;
   --uv-bg-alt: #141C30;
   --uv-bg-card: #1B2540;
@@ -14,11 +9,9 @@
   --uv-black: #0A0A0A;
   --uv-white: #FFFFFF;
 
-  /* Tipografía */
   --font-display: 'Orbitron', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Espaciados */
   --uv-radius: 14px;
   --uv-transition: 0.25s ease;
 }
@@ -35,7 +28,12 @@ body {
   padding: 0;
 }
 
-h1, h2, h3, h4, .brand {
+/* Títulos y logo usan la fuente "de cine" */
+h1,
+h2,
+h3,
+h4,
+.brand {
   font-family: var(--font-display);
   letter-spacing: 0.5px;
 }
@@ -45,7 +43,7 @@ a {
   color: var(--uv-blue-glow);
 }
 
-/* ---------- Navbar ---------- */
+/* Navbar */
 .navbar-uv {
   background-color: var(--uv-black);
   border-bottom: 1px solid rgba(91, 140, 255, 0.15);
@@ -70,12 +68,12 @@ a {
   color: var(--uv-blue-glow) !important;
 }
 
-/* ---------- Hero (elemento distintivo: haz de proyector) ---------- */
+/* Hero: fondo con degradado azul + una línea de luz animada (::before) */
 .hero-uv {
   position: relative;
   overflow: hidden;
   background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(47, 111, 237, 0.35), transparent 70%),
-              linear-gradient(180deg, var(--uv-bg) 0%, var(--uv-bg-alt) 100%);
+    linear-gradient(180deg, var(--uv-bg) 0%, var(--uv-bg-alt) 100%);
   padding: 5rem 1.5rem 4rem;
   text-align: center;
 }
@@ -94,9 +92,19 @@ a {
   pointer-events: none;
 }
 
+/* Mueve la línea de luz de un lado a otro */
 @keyframes uv-beam-sweep {
-  0%, 100% { transform: translateX(-50%) rotate(-12deg); opacity: 0.5; }
-  50% { transform: translateX(-50%) rotate(12deg); opacity: 0.9; }
+
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-12deg);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(12deg);
+    opacity: 0.9;
+  }
 }
 
 .hero-uv .eyebrow {
@@ -118,7 +126,7 @@ a {
   margin: 0 auto 2rem;
 }
 
-/* ---------- Botones ---------- */
+/* Botones */
 .btn-uv-primary {
   background-color: var(--uv-blue);
   color: var(--uv-white);
@@ -149,8 +157,10 @@ a {
   color: var(--uv-blue-glow);
 }
 
-/* ---------- Cards de película ---------- */
+/* Tarjetas de película */
 .card-uv {
+  position: relative;
+  /* para poder ubicar el botón de favorito adentro */
   background-color: var(--uv-bg-card);
   border: 1px solid rgba(184, 193, 209, 0.08);
   border-radius: var(--uv-radius);
@@ -166,6 +176,7 @@ a {
 .card-uv img {
   width: 100%;
   aspect-ratio: 2 / 3;
+  /* proporción de póster de cine */
   object-fit: cover;
 }
 
@@ -177,14 +188,14 @@ a {
   color: var(--uv-gray);
 }
 
-/* ---------- Secciones de géneros ---------- */
+/* Línea azul a la izquierda de cada título de sección */
 .section-title {
   border-left: 4px solid var(--uv-blue);
   padding-left: 0.8rem;
   margin-bottom: 1.5rem;
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 .footer-uv {
   background-color: var(--uv-black);
   color: var(--uv-gray);
@@ -200,14 +211,13 @@ a {
   color: var(--uv-blue-glow);
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .hero-uv {
     padding: 3.5rem 1rem 2.5rem;
   }
 }
 
-/* ---------- Accesibilidad: foco visible ---------- */
+/* Contorno visible al navegar con teclado (accesibilidad) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
@@ -215,7 +225,8 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-/* ---------- Modo claro (toggle) ---------- */
+/* Modo claro: al agregar la clase "light-mode" al body (con JS),
+   estas variables se sobrescriben y todo el sitio cambia de color */
 body.light-mode {
   --uv-bg: #F4F6FB;
   --uv-bg-alt: #E7ECF7;
@@ -242,6 +253,11 @@ body.light-mode .footer-uv {
   border-top: 1px solid rgba(47, 111, 237, 0.15);
 }
 
+body.light-mode .table-uv {
+  color: var(--uv-white);
+}
+
+/* Botón de tema (🌙 / ☀️) */
 #toggleTema {
   background: transparent;
   border: 1px solid var(--uv-gray);
@@ -261,7 +277,7 @@ body.light-mode .footer-uv {
   transform: rotate(15deg);
 }
 
-/* ---------- Favoritos (corazón) ---------- */
+/* Botón corazón dentro de cada card */
 .btn-favorito {
   background: rgba(10, 10, 10, 0.55);
   border: none;
@@ -282,50 +298,7 @@ body.light-mode .footer-uv {
   transform: scale(1.15);
 }
 
-.card-uv {
-  position: relative;
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .hero-uv::before {
-    animation: none;
-  }
-  .card-uv:hover {
-    transform: none;
-  }
-}
-
-/* ---------- Barra de progreso (carga de la API) ---------- */
-.progress-uv {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--uv-blue), var(--uv-blue-glow));
-  z-index: 2000;
-  transition: width 0.3s ease, opacity 0.4s ease;
-  box-shadow: 0 0 8px var(--uv-blue-glow);
-}
-
-/* ---------- Contador de favoritos (badge junto al toggle de tema) ---------- */
-.badge-favoritos {
-  background-color: var(--uv-blue);
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 999px;
-  min-width: 18px;
-  height: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-  position: relative;
-  top: -1px;
-}
-
+/* Botón "❤️ 0" en el navbar */
 .btn-favoritos-nav {
   background: transparent;
   border: 1px solid var(--uv-gray);
@@ -343,7 +316,34 @@ body.light-mode .footer-uv {
   color: var(--uv-blue-glow);
 }
 
-/* ---------- Paginación ---------- */
+.badge-favoritos {
+  background-color: var(--uv-blue);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  position: relative;
+  top: -1px;
+}
+
+/* Respeta la preferencia de "reducir movimiento" del sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+  .hero-uv::before {
+    animation: none;
+  }
+
+  .card-uv:hover {
+    transform: none;
+  }
+}
+
+/* Paginación de resultados (botones 1, 2, 3...) */
 .pagination-uv .page-link {
   background-color: var(--uv-bg-card);
   border-color: rgba(184, 193, 209, 0.15);
@@ -366,7 +366,7 @@ body.light-mode .footer-uv {
   opacity: 0.4;
 }
 
-/* ---------- Skeleton de carga ---------- */
+/* Efecto "brillante" que se muestra mientras cargan los pósters */
 .skeleton-uv {
   background: linear-gradient(90deg, var(--uv-bg-card) 25%, var(--uv-bg-alt) 37%, var(--uv-bg-card) 63%);
   background-size: 400% 100%;
@@ -374,19 +374,29 @@ body.light-mode .footer-uv {
   border-radius: var(--uv-radius);
   aspect-ratio: 2 / 3;
 }
+
 @keyframes skeletonShine {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .skeleton-uv { animation: none; }
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
 }
 
-/* ---------- Tablas ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-uv {
+    animation: none;
+  }
+}
+
+/* Tablas, por ejemplo para la lista de "Mis Boletos" */
 .table-uv {
   color: var(--uv-white);
   --bs-table-bg: transparent;
 }
+
 .table-uv th {
   color: var(--uv-blue-glow);
   font-family: var(--font-display);
@@ -396,14 +406,12 @@ body.light-mode .footer-uv {
   text-transform: uppercase;
   border-color: rgba(184, 193, 209, 0.15) !important;
 }
+
 .table-uv td {
   border-color: rgba(184, 193, 209, 0.1) !important;
   vertical-align: middle;
 }
+
 .table-uv caption {
   color: var(--uv-gray);
-}
-
-body.light-mode .table-uv {
-  color: var(--uv-white);
 }

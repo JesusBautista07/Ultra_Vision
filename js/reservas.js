@@ -1,7 +1,4 @@
-/* ==========================================================================
-   UltraVision — reservas.js
-   Lógica exclusiva de pages/reservas.html
-   ========================================================================== */
+// Lógica exclusiva de pages/reservas.html
 
 const PRECIO_BOLETO = 12000;
 const FILAS = ["A", "B", "C", "D", "E", "F"];
@@ -87,16 +84,16 @@ function actualizarResumen() {
     document.getElementById("resumenTotal").textContent = `$${total.toLocaleString("es-CO")}`;
 }
 
-// Carga las películas populares en el <select>, desde la API
+// Carga las películas populares en el <select>, desde la API.
+// Si se llegó desde el botón "Reservar boletos" de detalle.html, viene un
+// movieId por la URL y esa película se agrega y se deja preseleccionada.
 async function cargarPeliculasSelect() {
     const select = document.getElementById("selectPelicula");
-    const parametros = new URLSearchParams(window.location.search);
-    const movieIdUrl = parametros.get("movieId"); // Si se llegó desde "Reservar boletos" en detalle.html
+    const movieIdUrl = new URLSearchParams(window.location.search).get("movieId");
 
     try {
         const peliculas = await getPopularMovies();
 
-        // Si viene un movieId por URL que no está en populares, se busca aparte
         if (movieIdUrl && !peliculas.some((p) => String(p.id) === movieIdUrl)) {
             const detalle = await getMovieDetail(movieIdUrl);
             peliculas.unshift(detalle);

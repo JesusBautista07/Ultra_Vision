@@ -1,124 +1,111 @@
-/* ==========================================================================
-  UltraVision — mis-boletos.js
-  Lógica exclusiva de pages/mis-boletos.html (CRUD sobre LocalStorage)
-  ========================================================================== */
+// Lógica exclusiva de pages/mis-boletos.html
 
-let idAEliminar = null;                              // Guarda temporalmente qué boleto se va a borrar
-let modalEditar, modalEliminar, toastNotificacion;   // Instancias de los componentes Bootstrap (se llenan al cargar)
+let idBoletoAEliminar = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Se crean UNA sola vez las instancias de modal/toast, controladas por JS (no por data-bs-*)
-  modalEditar = new bootstrap.Modal(document.getElementById("modalEditar"));
-  modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
-  toastNotificacion = new bootstrap.Toast(document.getElementById("toastNotificacion"));
-
-  pintarBoletos(); // Dibuja todos los boletos guardados apenas carga la página
+  pintarBoletos();
 
   document.getElementById("formEditar").addEventListener("submit", guardarEdicion);
   document.getElementById("btnConfirmarEliminar").addEventListener("click", confirmarEliminacion);
 });
 
-// Lista todos los boletos guardados en LocalStorage 
+// Lee los boletos guardados y dibuja una card por cada uno (o el estado vacío)
 function pintarBoletos() {
-  const boletos = obtenerBoletos(); // Trae los datos desde crud.js
+  const boletos = obtenerBoletos();
   const contenedor = document.getElementById("contenedorBoletos");
   const estadoVacio = document.getElementById("estadoVacio");
 
-  // Si no hay boletos, muestra el mensaje de "vacio" en vez de las tarjetas
   if (boletos.length === 0) {
     contenedor.innerHTML = "";
     estadoVacio.classList.remove("d-none");
     return;
   }
-  // Oculta el mensaje de vacio
-  estadoVacio.classList.add("d-none");
 
-  // Genera una tarjeta por cada boleto (imagen, datos, botones editar/cancelar)
-  contenedor.innerHTML = boletos
-    .map((boleto) => `
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card-uv h-100 p-3 d-flex flex-column">
-            <div class="d-flex gap-3">
-              <img src="${getPosterUrl(boleto.poster)}" alt="Póster de ${boleto.movieTitle}"
-                  style="width: 70px; height: 105px; object-fit: cover; border-radius: 8px;">
-              <div>
-                <h6 class="mb-1">${boleto.movieTitle}</h6>
-                <small class="text-secondary d-block">${boleto.funcion}</small>
-                <small class="text-secondary d-block">Asientos: ${boleto.asientos.join(", ")}</small>
-                <small class="text-secondary d-block">${boleto.comprador.nombre}</small>
-              </div>
-            </div>
-            <p class="mt-3 mb-2 fw-semibold" style="color: var(--uv-blue-glow);">
-              Total: $${boleto.total.toLocaleString("es-CO")}
-            </p>
-            <div class="mt-auto d-flex gap-2">
-              <button class="btn-uv-outline btn-sm flex-fill" onclick="abrirModalEditar(${boleto.id})">Editar</button>
-              <button class="btn btn-outline-danger btn-sm flex-fill" onclick="abrirModalEliminar(${boleto.id})">Cancelar</button>
-            </div>
-          </div>
-        </div>`)
-    .join("");
+  estadoVacio.classList.add("d-none");
+  contenedor.innerHTML = boletos.map((boleto) => boletoCardHTML(boleto)).join("");
+  activarBotonesDeCards();
 }
 
-// Abre el modal de edición precargado con los datos del boleto 
+// HTML de una card de boleto reservado
+function boletoCardHTML(boleto) {
+  return `
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card-uv h-100 p-3">
+        <h5 class="mb-1">${boleto.movieTitle}</h5>
+        <p class="text-secondary small mb-2">${boleto.funcion}</p>
+        <p class="mb-1">Asientos: <strong>${boleto.asientos.join(", ")}</strong></p>
+        <p class="mb-1">Comprador: ${boleto.comprador.nombre}</p>
+        <p class="mb-3">Total: <strong>$${boleto.total.toLocaleString("es-CO")}</strong></p>
+        <div class="d-flex gap-2 mt-auto">
+          <button class="btn-uv-outline btn-editar" data-id="${boleto.id}">Editar</button>
+          <button class="btn btn-outline-danger btn-eliminar" data-id="${boleto.id}">Cancelar</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// Conecta los botones "Editar" y "Cancelar" de cada card recién pintada
+function activarBotonesDeCards() {
+  document.querySelectorAll(".btn-editar").forEach((boton) => {
+    boton.addEventListener("click", () => abrirModalEditar(Number(boton.dataset.id)));
+  });
+
+  document.querySelectorAll(".btn-eliminar").forEach((boton) => {
+    boton.addEventListener("click", () => abrirModalEliminar(Number(boton.dataset.id)));
+  });
+}
+
+// Llena el formulario del modal con los datos actuales del boleto
 function abrirModalEditar(id) {
-  const boleto = obtenerBoletoPorId(id); // Busca el boleto exacto por su id
+  const boleto = obtenerBoletoPorId(id);
   if (!boleto) return;
 
-  // Rellena los campos del formulario con los datos actuales del boleto
   document.getElementById("editarId").value = boleto.id;
   document.getElementById("editarFuncion").value = boleto.funcion;
   document.getElementById("editarNombre").value = boleto.comprador.nombre;
   document.getElementById("editarEmail").value = boleto.comprador.email;
 
-  modalEditar.show();
+  new bootstrap.Modal(document.getElementById("modalEditar")).show();
 }
 
-// Guarda los cambios hechos en el modal de edición 
+// Toma los valores del formulario, actualiza el boleto y refresca la lista
 function guardarEdicion(evento) {
   evento.preventDefault();
 
-  const id = Number(document.getElementById("editarId").value); // El input guarda el id como texto, se convierte a número
-  const nombre = document.getElementById("editarNombre").value.trim();
-  const email = document.getElementById("editarEmail").value.trim();
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Validación simple: si falla, avisa por toast y no continúa
-  if (nombre.length < 3 || !regexEmail.test(email)) {
-    mostrarToast("Revisa el nombre y el correo antes de guardar.");
-    return;
-  }
-
-  // Trae el boleto original y le sobreescribe solo los campos editables
+  const id = Number(document.getElementById("editarId").value);
   const boleto = obtenerBoletoPorId(id);
+  if (!boleto) return;
+
   boleto.funcion = document.getElementById("editarFuncion").value;
-  boleto.comprador.nombre = nombre;
-  boleto.comprador.email = email;
+  boleto.comprador.nombre = document.getElementById("editarNombre").value.trim();
+  boleto.comprador.email = document.getElementById("editarEmail").value.trim();
 
-  actualizarBoleto(boleto); // Guarda el cambio en LocalStorage (crud.js)
-  modalEditar.hide();
-  pintarBoletos();          // Vuelve a dibujar la lista con el dato actualizado
+  actualizarBoleto(boleto);
+  bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
   mostrarToast("Reserva actualizada correctamente.");
-}
-
-// Guarda el id pendiente de eliminar y abre el modal de confirmación 
-function abrirModalEliminar(id) {
-  idAEliminar = id; // Se guarda en la variable global para usarlo luego, al confirmar
-  modalEliminar.show();
-}
-
-// Elimina el boleto confirmado 
-function confirmarEliminacion() {
-  if (idAEliminar === null) return;
-  eliminarBoleto(idAEliminar); // Borra de LocalStorage (crud.js)
-  idAEliminar = null;          // Limpia la variable para el próximo uso
-  modalEliminar.hide();
   pintarBoletos();
-  mostrarToast("Reserva cancelada.");
 }
 
-// Muestra el Toast con un mensaje dado 
+// Guarda qué boleto se va a eliminar y abre el modal de confirmación
+function abrirModalEliminar(id) {
+  idBoletoAEliminar = id;
+  new bootstrap.Modal(document.getElementById("modalEliminar")).show();
+}
+
+// Se ejecuta al confirmar en el modal: elimina el boleto y refresca la lista
+function confirmarEliminacion() {
+  if (idBoletoAEliminar === null) return;
+
+  eliminarBoleto(idBoletoAEliminar);
+  idBoletoAEliminar = null;
+
+  bootstrap.Modal.getInstance(document.getElementById("modalEliminar")).hide();
+  mostrarToast("Reserva cancelada.");
+  pintarBoletos();
+}
+
+// Muestra el toast de Bootstrap con el mensaje indicado
 function mostrarToast(mensaje) {
   document.getElementById("toastMensaje").textContent = mensaje;
-  toastNotificacion.show();
+  new bootstrap.Toast(document.getElementById("toastNotificacion")).show();
 }

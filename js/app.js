@@ -1,17 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => { // se ejecuta cuando el DOM se ha cargado completo
+// Lógica general del sitio: corre en todas las páginas.
+// index.html además usa initHome() para pintar el carrusel y las populares.
+
+document.addEventListener("DOMContentLoaded", () => {
   initModoOscuro();
-  insertarProgressBar();
   actualizarBadgeFavoritos();
 
+  // Solo index.html tiene el carrusel, así que solo ahí se llama initHome()
   const enIndex = document.getElementById("carruselInner");
-  if (enIndex) { // si estamos en la página de inicio, inicializamos el contenido de la página y el carrusel de estrenos
+  if (enIndex) {
     initHome();
   }
 });
 
-
+// Modo oscuro / claro, guardado en LocalStorage para recordarlo entre visitas
 function initModoOscuro() {
-  const boton = document.getElementById("toggleTema"); // Botón que permite al usuario cambiar entre modo oscuro y claro
+  const boton = document.getElementById("toggleTema");
   if (!boton) return;
 
   const temaGuardado = localStorage.getItem("uv-theme");
@@ -30,71 +33,41 @@ function initModoOscuro() {
   });
 }
 
-
-function obtenerFavoritos() { // devuelve un array con los ids de los boletos favoritos guardados
+// Favoritos: se guardan como un arreglo de IDs de película en LocalStorage
+function obtenerFavoritos() {
   return JSON.parse(localStorage.getItem("uv-favoritos") || "[]");
 }
 
-function esFavorito(movieId) { // devuelve true si el boleto con el id dado es favorito
+function esFavorito(movieId) {
   return obtenerFavoritos().includes(movieId);
 }
 
-function toggleFavorito(movieId) { // cambia el estado de favorito del boleto con el id dado
+function toggleFavorito(movieId) {
   let favoritos = obtenerFavoritos();
-  if (favoritos.includes(movieId)) { // si el boleto ya estaba marcado como favorito lo desmarcamos
+  if (favoritos.includes(movieId)) {
     favoritos = favoritos.filter((id) => id !== movieId);
   } else {
     favoritos.push(movieId);
   }
-  localStorage.setItem("uv-favoritos", JSON.stringify(favoritos)); // guardamos los favoritos en LocalStorage
+  localStorage.setItem("uv-favoritos", JSON.stringify(favoritos));
   actualizarBadgeFavoritos();
   return esFavorito(movieId);
 }
 
-/** Actualiza el badge de favoritos en la barra de navegación */
+// Actualiza el número dentro del ❤️ del navbar
 function actualizarBadgeFavoritos() {
   const badge = document.getElementById("badgeFavoritos");
   if (badge) badge.textContent = obtenerFavoritos().length;
 }
 
-/** Inserta la barra de progreso en la pantalla principal */
-function insertarProgressBar() {
-  if (document.getElementById("progressUV")) return;
-  const barra = document.createElement("div");
-  barra.id = "progressUV";
-  barra.className = "progress-uv";
-  document.body.prepend(barra);
-}
-
-/** Muestra la barra de progreso al cargar la página */
-function progresoInicio() {
-  const barra = document.getElementById("progressUV");
-  if (!barra) return;
-  barra.style.opacity = "1";
-  barra.style.width = "70%";
-}
-
-function progresoFin() { // oculta la barra de progreso al terminar de cargar la página
-  const barra = document.getElementById("progressUV");
-  if (!barra) return;
-  barra.style.width = "100%";
-  setTimeout(() => {
-    barra.style.opacity = "0";
-    setTimeout(() => (barra.style.width = "0%"), 400);
-  }, 300);
-}
-
-/** Inicializa el contenido de la página de inicio */
+// Carga los datos de TMDb para la portada: carrusel + grid de populares
 async function initHome() {
-  progresoInicio();
   try {
-    const populares = await getPopularMovies(); // obtenemos las peliculas populares
+    const populares = await getPopularMovies();
     pintarCarrusel(populares.slice(0, 5));
     pintarPopulares(populares.slice(5, 13));
-    progresoFin();
   } catch (error) {
-    progresoFin();
-    console.error("Error cargando datos de TMDb:", error); // mostramos un error en la consola si llega a ocurrir un problema
+    console.error("Error cargando datos de TMDb:", error);
     document.getElementById("carruselInner").innerHTML = `
       <div class="carousel-item active">
         <div class="d-flex justify-content-center align-items-center text-danger" style="height:300px;">
@@ -104,11 +77,11 @@ async function initHome() {
   }
 }
 
-/** Pinta el carrusel de estrenos destacados en el index */
+// Pinta el carrusel de estrenos destacados en index.html
 function pintarCarrusel(peliculas) {
   const contenedor = document.getElementById("carruselInner");
-  contenedor.innerHTML = peliculas // recorremos el array de peliculas y creamos una card para cada una de ellas
-    .map( // para cada pelicula creamos un div con la informacion de la pelicula y un boton para marcarla como favorita
+  contenedor.innerHTML = peliculas
+    .map(
       (pelicula, index) => `
       <div class="carousel-item ${index === 0 ? "active" : ""}">
         <div class="d-flex flex-column flex-md-row align-items-center gap-4 p-4"
@@ -130,22 +103,23 @@ function pintarCarrusel(peliculas) {
     .join("");
 }
 
-/** Pinta las cards de películas populares en index.html */
+// Pinta las cards de películas populares en index.html
 function pintarPopulares(peliculas) {
   const contenedor = document.getElementById("contenedorPopulares");
   contenedor.innerHTML = peliculas.map((pelicula) => tarjetaPeliculaHTML(pelicula)).join("");
   activarBotonesFavorito(contenedor);
 }
 
-/** Retorna la ruta de la página de detalle de una pelicula */
+// index.html y pages/*.html están en carpetas distintas, así que el link
+// a detalle.html cambia según desde dónde se esté generando la card
 function rutaDetalle(movieId) {
-  const dentroDePages = window.location.pathname.includes("/pages/"); // comprobamos si estamos en la carpeta pages
+  const dentroDePages = window.location.pathname.includes("/pages/");
   return dentroDePages ? `detalle.html?id=${movieId}` : `pages/detalle.html?id=${movieId}`;
 }
 
-/** Crea una tarjeta con la informacion de una pelicula */
+// Genera el HTML de una card de película (se reutiliza en index y cartelera)
 function tarjetaPeliculaHTML(pelicula) {
-  const favMarcado = esFavorito(pelicula.id); // comprobamos si la pelicula esta marcada como favorita
+  const favMarcado = esFavorito(pelicula.id);
   return `
     <div class="col-6 col-md-4 col-lg-3">
       <div class="card-uv h-100">
@@ -165,7 +139,7 @@ function tarjetaPeliculaHTML(pelicula) {
     </div>`;
 }
 
-/** Activa los botones de marcar como favorita */
+// Activa el clic del botón de favorito en cada card dentro de un contenedor
 function activarBotonesFavorito(contenedor) {
   contenedor.querySelectorAll(".btn-favorito").forEach((boton) => {
     boton.addEventListener("click", () => {
