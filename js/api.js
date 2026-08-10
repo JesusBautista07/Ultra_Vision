@@ -2,11 +2,14 @@
 // Este token es de tipo "API Read Access Token" (v4 auth). En un proyecto
 // real no se deja expuesto así en el front-end, pero para un proyecto
 // académico sin backend es la forma más simple de usarlo.
+
+// Token de autenticacion ante TMDb
 const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmOTQ4OGUxNWYxZTk2YjUzMThlMjAwYzJmNTczMWM0NSIsIm5iZiI6MTc4NTk2MTM1MS4yNTMsInN1YiI6IjZhNzM5Yjg3MjgxNjE2NmJiNTNkNjQxYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oV1j2lPSG9JFt_PaFQ2DoO6A-LEInEe2-hDNd5VsQnM";
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_IMG_BASE = "https://image.tmdb.org/t/p/w500";
 
+// Encabezados que pide TMDb en cada petición: formato de respuesta + el token de acceso
 const tmdbHeaders = {
   accept: "application/json",
   Authorization: `Bearer ${TMDB_TOKEN}`,
@@ -17,8 +20,9 @@ const tmdbHeaders = {
 // params: parámetros extra de la URL, ej. { query: "batman" }
 async function tmdbFetch(endpoint, params = {}) {
   const url = new URL(TMDB_BASE_URL + endpoint);
-  url.searchParams.set("language", "es-ES");
+  url.searchParams.set("language", "es-CO");
   Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+  // EJ: /search/movie?language=es-CO&query=Batman&page=1
 
   const response = await fetch(url.toString(), { headers: tmdbHeaders });
 
