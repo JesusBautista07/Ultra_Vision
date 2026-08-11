@@ -67,7 +67,7 @@
     </nav>
 
     <!-- Reserva de asientos: reservas.js llena el mapa de asientos y el select de películas -->
-    <main class="bg-uvbg min-h-screen py-10 px-4 reservas-page">
+    <main class="min-h-screen py-10 px-4 reservas-page">
         <div class="max-w-5xl mx-auto">
 
             <p class="text-uvglow font-display text-xs tracking-widest uppercase mb-1">Reserva tu función</p>
@@ -76,7 +76,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 <!-- Datos de la función -->
-                <div class="lg:col-span-2 bg-uvbgalt rounded-2xl p-6">
+                <div class="lg:col-span-2 reserva-panel rounded-2xl p-6">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div>
@@ -107,7 +107,8 @@
 
                     <!-- Grid de asientos, se dibuja por completo desde reservas.js -->
                     <div class="mapa-asientos-wrapper">
-                        <div id="mapaAsientos" class="mapa-asientos"></div>
+                        <div id="mapaAsientos" class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto">
+                        </div>
                     </div>
 
                     <!-- Leyenda de colores -->
@@ -125,7 +126,7 @@
                 </div>
 
                 <!-- Resumen de compra + formulario -->
-                <div class="bg-uvbgalt rounded-2xl p-6 h-fit">
+                <div class="resumen-panel rounded-2xl p-6 h-fit">
                     <h2 class="text-white font-display text-lg mb-4">Resumen de compra</h2>
 
                     <div class="text-uvgray text-sm space-y-2 mb-4">
