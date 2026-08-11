@@ -28,6 +28,7 @@ function validarFormularioContacto(evento) {
   }
 
   alerta.classList.remove("d-none");
+  alerta.textContent = "Mensaje registrado (formulario de demostración, no se envía a ningún correo real).";
   document.getElementById("formContacto").reset();
   [nombre, email, asunto, mensaje].forEach((campo) => campo.classList.remove("is-invalid"));
 }

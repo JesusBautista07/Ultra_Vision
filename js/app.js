@@ -20,15 +20,15 @@ function initModoOscuro() {
   const temaGuardado = localStorage.getItem("uv-theme");
   if (temaGuardado === "light") {
     document.body.classList.add("light-mode");
-    boton.textContent = "☀️";
-  } else {
     boton.textContent = "🌙";
+  } else {
+    boton.textContent = "☀️";
   }
 
   boton.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
     const esClaro = document.body.classList.contains("light-mode");
-    boton.textContent = esClaro ? "☀️" : "🌙";
+    boton.textContent = esClaro ? "🌙" : "☀️";
     localStorage.setItem("uv-theme", esClaro ? "light" : "dark");
   });
 }
