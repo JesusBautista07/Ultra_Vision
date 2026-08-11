@@ -750,20 +750,47 @@ body.light-mode .form-check-input:checked {
   padding-bottom: 8px;
 }
 
-/* En móviles, cada asiento mantiene su tamaño
-   y el mapa conserva exactamente 8 columnas */
+/* =========================================
+   MAPA DE ASIENTOS RESPONSIVE
+   ========================================= */
+
+.mapa-asientos-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+}
+
+.mapa-asientos {
+  display: grid !important;
+  grid-template-columns: repeat(8, 32px) !important;
+  gap: 8px !important;
+
+  width: max-content;
+  margin: 0 auto;
+}
+
+/* Tamaño normal de los asientos */
+.mapa-asientos .asiento-uv {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+}
+
+/* En celulares */
 @media (max-width: 576px) {
-  #mapaAsientos {
+
+  .mapa-asientos {
     grid-template-columns: repeat(8, 40px) !important;
-    width: max-content !important;
-    max-width: none !important;
+    gap: 6px !important;
+
     margin-left: auto;
     margin-right: auto;
   }
 
-  .asiento-uv {
+  .mapa-asientos .asiento-uv {
     width: 40px !important;
     height: 40px !important;
-    font-size: 0.75rem !important;
+    font-size: 12px !important;
   }
 }
