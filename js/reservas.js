@@ -71,54 +71,41 @@ function pintarMapaAsientos() {
     contenedor.innerHTML = "";
 
     FILAS.forEach((fila) => {
-
-        // Crea una fila independiente de 8 asientos
-        const filaContenedor = document.createElement("div");
-        filaContenedor.className = "fila-asientos";
-
         for (let col = 1; col <= COLUMNAS; col++) {
             const idAsiento = `${fila}${col}`;
             const ocupado = asientosOcupados.includes(idAsiento);
 
             const boton = document.createElement("button");
-
             boton.type = "button";
             boton.dataset.asiento = idAsiento;
             boton.textContent = idAsiento;
             boton.disabled = ocupado;
 
-            const clasesBase =
-                "asiento-uv w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
+            const clasesBase = "w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
 
             boton.className = ocupado
                 ? `${clasesBase} bg-white/10 text-white/30 cursor-not-allowed`
                 : `${clasesBase} bg-uvcard text-uvgray border border-white/10 hover:border-uvglow cursor-pointer`;
 
-            // Solo los disponibles reaccionan al clic
             if (!ocupado) {
-                boton.addEventListener("click", () => {
-                    alternarAsiento(idAsiento, boton);
-                });
+                boton.addEventListener("click", () => alternarAsiento(idAsiento, boton));
             }
 
-            filaContenedor.appendChild(boton);
+            contenedor.appendChild(boton);
         }
-
-        contenedor.appendChild(filaContenedor);
     });
 }
 
 // Selecciona/deselecciona un asiento y actualiza su estilo
 function alternarAsiento(idAsiento, boton) {
-    const clasesBase =
-        "asiento-uv w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
+    const clasesBase = "w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
 
     if (asientosSeleccionados.includes(idAsiento)) {
         asientosSeleccionados = asientosSeleccionados.filter((a) => a !== idAsiento);
-        boton.className = `${clasesBase} bg-uvcard text-uvgray border border-white/10 hover:border-uvglow cursor-pointer`;
+        boton.className = `${clasesBase}`;
     } else {
         asientosSeleccionados.push(idAsiento);
-        boton.className = `${clasesBase} bg-uvblue text-white cursor-pointer`;
+        boton.className = `${clasesBase} asiento-seleccionado`;
     }
 
     actualizarResumen();
