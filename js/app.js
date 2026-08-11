@@ -129,7 +129,11 @@ function tarjetaPeliculaHTML(pelicula) {
   return `
     <div class="col-6 col-md-4 col-lg-3">
       <div class="card-uv h-100">
-        <button class="btn-favorito" data-id="${pelicula.id}" aria-label="Marcar como favorita">
+        <button
+          class="btn-favorito"
+          data-id="${pelicula.id}"
+          aria-label="${favMarcado ? "Quitar de favoritos" : "Marcar como favorita"}"
+        >
           ${favMarcado ? "❤️" : "🤍"}
         </button>
         <a href="${rutaDetalle(pelicula.id)}">
@@ -151,7 +155,15 @@ function activarBotonesFavorito(contenedor) {
     boton.addEventListener("click", () => {
       const id = Number(boton.dataset.id);
       const ahoraEsFavorito = toggleFavorito(id);
+
       boton.textContent = ahoraEsFavorito ? "❤️" : "🤍";
+
+      boton.setAttribute(
+        "aria-label",
+        ahoraEsFavorito
+          ? "Quitar de favoritos"
+          : "Marcar como favorita"
+      );
     });
   });
 }
