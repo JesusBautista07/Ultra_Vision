@@ -6,9 +6,21 @@ let paginaActualCartelera = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarGeneros();
-  cargarYPintar(); // carga inicial: populares, sin filtros
 
-  document.getElementById("checkSoloFavoritos").addEventListener("change", () => {
+  // Si se entra desde el botón de favoritos del navbar,
+  // activa automáticamente el filtro de favoritos.
+  const parametros = new URLSearchParams(window.location.search);
+  const mostrarFavoritos = parametros.get("favoritos") === "true";
+
+  const checkFavoritos = document.getElementById("checkSoloFavoritos");
+
+  if (mostrarFavoritos) {
+    checkFavoritos.checked = true;
+  }
+
+  cargarYPintar();
+
+  checkFavoritos.addEventListener("change", () => {
     paginaActualCartelera = 1;
     pintarPagina();
   });
