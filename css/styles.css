@@ -725,15 +725,13 @@ body.light-mode .form-check-input:checked {
   color-scheme: dark;
 }
 
-/* ================================
-   MAPA DE ASIENTOS
-================================ */
+/* MAPA DE ASIENTOS */
 
 .mapa-asientos-wrapper {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .mapa-asientos {
@@ -742,10 +740,13 @@ body.light-mode .form-check-input:checked {
   gap: 8px;
 
   width: max-content;
+  max-width: 100%;
+
   margin: 0 auto;
 }
 
-/* Cada asiento */
+/* Asientos */
+
 .asiento-uv {
   width: 32px !important;
   height: 32px !important;
@@ -754,24 +755,17 @@ body.light-mode .form-check-input:checked {
   display: flex !important;
   align-items: center;
   justify-content: center;
-
-  font-size: 10px !important;
 }
 
 /* Móvil */
-@media (max-width: 576px) {
 
-  .mapa-asientos-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
+@media (max-width: 576px) {
 
   .mapa-asientos {
     grid-template-columns: repeat(8, 40px);
     gap: 6px;
 
-    width: max-content;
-    margin: 0 auto;
+    max-width: none;
   }
 
   .asiento-uv {
