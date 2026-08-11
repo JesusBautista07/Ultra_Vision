@@ -28,11 +28,15 @@ body {
   padding: 0;
 }
 
-/* Títulos y logo usan la fuente "de cine" */
 h1,
 h2,
 h3,
-h4,
+h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 .brand {
   font-family: var(--font-display);
   letter-spacing: 0.5px;
@@ -109,9 +113,10 @@ a {
 
 .hero-uv .eyebrow {
   color: var(--uv-blue-glow);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -399,12 +404,11 @@ body.light-mode .table-uv {
 
 .table-uv th {
   color: var(--uv-blue-glow);
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  border-color: rgba(184, 193, 209, 0.15) !important;
 }
 
 .table-uv td {
