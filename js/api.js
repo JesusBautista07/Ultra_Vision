@@ -20,7 +20,7 @@ const tmdbHeaders = {
 // params: parámetros extra de la URL, ej. { query: "batman" }
 async function tmdbFetch(endpoint, params = {}) {
   const url = new URL(TMDB_BASE_URL + endpoint);
-  url.searchParams.set("language", "es-CO");
+  url.searchParams.set("language", "es-MX");
   Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
   // EJ: /search/movie?language=es-CO&query=Batman&page=1
 
