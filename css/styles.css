@@ -368,6 +368,7 @@ a {
   border-top: 1px solid rgba(91, 140, 255, 0.15);
 }
 
+
 .footer-uv a {
   color: var(--uv-gray);
 }
@@ -420,45 +421,43 @@ body.light-mode .text-dark {
 
 /* Imagen diferente SOLO para el Inicio */
 body.light-mode.pagina-inicio .hero-uv {
-    background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Overlay claro para la imagen del Inicio */
 body.light-mode.pagina-inicio .hero-uv-overlay {
-    background: linear-gradient(
-        90deg,
-        rgba(248, 250, 255, 0.92) 0%,
-        rgba(248, 250, 255, 0.78) 38%,
-        rgba(248, 250, 255, 0.38) 70%,
-        rgba(248, 250, 255, 0.55) 100%
-    );
+  background: linear-gradient(90deg,
+      rgba(248, 250, 255, 0.92) 0%,
+      rgba(248, 250, 255, 0.78) 38%,
+      rgba(248, 250, 255, 0.38) 70%,
+      rgba(248, 250, 255, 0.55) 100%);
 }
 
 /* Texto del Hero del Inicio en modo claro */
 body.light-mode.pagina-inicio .hero-uv h1 {
-    color: #0B1120 !important;
+  color: #0B1120 !important;
 }
 
 body.light-mode.pagina-inicio .hero-uv p {
-    color: #334155 !important;
+  color: #334155 !important;
 }
 
 body.light-mode.pagina-inicio .hero-uv .eyebrow {
-    color: #2563EB !important;
+  color: #2563EB !important;
 }
 
 /* Botón secundario del Inicio */
 body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light {
-    color: #0B1120;
-    border-color: #0B1120;
+  color: #0B1120;
+  border-color: #0B1120;
 }
 
 body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
-    color: #2563EB;
-    border-color: #2563EB;
+  color: #2563EB;
+  border-color: #2563EB;
 }
 
 /* =========================================================
@@ -467,15 +466,15 @@ body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
 
 /* Cartelera, Mis Boletos, Contacto, etc. */
 body.light-mode:not(.pagina-inicio) .hero-uv h1 {
-    color: #0B1120 !important;
+  color: #0B1120 !important;
 }
 
 body.light-mode:not(.pagina-inicio) .hero-uv p {
-    color: #475569 !important;
+  color: #475569 !important;
 }
 
 body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
-    color: #2563EB !important;
+  color: #2563EB !important;
 }
 
 
@@ -712,10 +711,42 @@ body.light-mode .form-check-input:checked {
 }
 
 
+/* CORRECCIÓN NAVBAR — RESERVAS
+   Bootstrap + Tailwind utilizan la clase "collapse"
+   con significados diferentes.*/
 /* CORRECCIÓN NAVBAR — RESERVAS Bootstrap + Tailwind utilizan la clase "collapse" con significados diferentes. */
 
 .navbar-uv .navbar-collapse.visible {
-    visibility: visible !important;
+  visibility: visible !important;
+}
+
+/* =========================================
+   MAPA DE ASIENTOS RESPONSIVE
+   ========================================= */
+
+.mapa-asientos-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+}
+
+/* En móviles, cada asiento mantiene su tamaño
+   y el mapa conserva exactamente 8 columnas */
+@media (max-width: 576px) {
+  #mapaAsientos {
+    grid-template-columns: repeat(8, 40px) !important;
+    width: max-content !important;
+    max-width: none !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .asiento-uv {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 0.75rem !important;
+  }
 }
 
 

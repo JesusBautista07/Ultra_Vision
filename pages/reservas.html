@@ -45,7 +45,8 @@
     <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
         <div class="container">
             <a class="navbar-brand brand" href="../index.html">Ultra<span>Vision</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú de navegación">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse visible" id="navMenu">
@@ -105,7 +106,10 @@
                     <p class="text-center text-uvgray text-xs uppercase tracking-widest mb-6">Pantalla</p>
 
                     <!-- Grid de asientos, se dibuja por completo desde reservas.js -->
-                    <div id="mapaAsientos" class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto"></div>
+                    <div class="mapa-asientos-wrapper">
+                        <div id="mapaAsientos" class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto">
+                        </div>
+                    </div>
 
                     <!-- Leyenda de colores -->
                     <div class="flex flex-wrap gap-4 justify-center text-xs text-uvgray">
