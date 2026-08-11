@@ -36,6 +36,13 @@ function pintarMapaAsientos() {
     const contenedor = document.getElementById("mapaAsientos");
     contenedor.innerHTML = "";
 
+    // Configuración visual del mapa: 8 columnas y 6 filas
+    contenedor.style.display = "grid";
+    contenedor.style.gridTemplateColumns = "repeat(8, 40px)";
+    contenedor.style.gridAutoRows = "40px";
+    contenedor.style.gap = "8px";
+    contenedor.style.justifyContent = "center";
+
     FILAS.forEach((fila) => {
 
         // Crea una fila independiente de 8 asientos
@@ -81,10 +88,10 @@ function alternarAsiento(idAsiento, boton) {
 
     if (asientosSeleccionados.includes(idAsiento)) {
         asientosSeleccionados = asientosSeleccionados.filter((a) => a !== idAsiento);
-        boton.className = `${clasesBase} bg-uvcard text-uvgray border border-white/10 hover:border-uvglow cursor-pointer`;
+        boton.className = `${clasesBase}`;
     } else {
         asientosSeleccionados.push(idAsiento);
-        boton.className = `${clasesBase} bg-uvblue text-white cursor-pointer`;
+        boton.className = `${clasesBase} asiento-seleccionado`;
     }
 
     actualizarResumen();
