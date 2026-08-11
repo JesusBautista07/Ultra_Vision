@@ -16,7 +16,7 @@ Desarrollar una aplicación web responsive que resuelva la necesidad de una cade
 - **HTML5** — estructura semántica de las 6 páginas
 - **CSS3** — variables personalizadas, Flexbox, animaciones, transiciones y diseño responsive
 - **JavaScript (Vanilla)** — manipulación del DOM, eventos, validaciones, CRUD con LocalStorage y consumo de API
-- **Bootstrap 5** — Navbar, Cards, Carousel, Modal, Toast, Accordion, Offcanvas, formularios, botones y sistema Grid
+- **Bootstrap 5** — Navbar, Cards, Carousel, Modal, Toast, formularios, botones y sistema Grid
 - **Tailwind CSS** — sección de selección de asientos en `reservas.html` (100% Tailwind, sin mezclar con Bootstrap)
 - **API pública** — [TMDb (The Movie Database)](https://www.themoviedb.org/) para cartelera, búsqueda, géneros, detalle, reparto y trailers
 
@@ -27,37 +27,35 @@ UltraVision/
 │
 ├── index.html              → Inicio: hero, carrusel de estrenos y populares
 ├── pages/
-│   ├── cartelera.html      → Catálogo con buscador, filtros y ordenamiento
+│   ├── cartelera.html      → Catálogo con buscador y filtro por género
 │   ├── detalle.html        → Ficha de película: sinopsis, reparto y trailer
 │   ├── reservas.html       → Selección de asientos (sección 100% Tailwind) + formulario
 │   ├── mis-boletos.html    → CRUD de reservas (ver, editar, cancelar)
-│   └── contacto.html       → Formulario validado + FAQ (Accordion) + Offcanvas
+│   └── contacto.html       → Formulario de contacto validado + datos del cine
 ├── css/
 │   └── styles.css          → Variables de la paleta, estilos base y responsive
 ├── js/
 │   ├── api.js               → Conexión con la API de TMDb
 │   ├── app.js                → Lógica global (modo oscuro, favoritos, home)
 │   ├── crud.js                → CRUD de boletos en LocalStorage
-│   ├── cartelera.js            → Lógica de búsqueda/filtros/orden
+│   ├── cartelera.js            → Lógica de búsqueda, filtro y paginación
 │   ├── reservas.js              → Mapa de asientos y creación de boletos
 │   ├── mis-boletos.js            → Listado, edición y eliminación de boletos
 │   ├── detalle.js                 → Detalle de película y trailer
 │   └── contacto.js                 → Validaciones del formulario de contacto
-├── img/                     → Espacio para imágenes propias del proyecto
 ├── icons/
 │   └── favicon.svg
 └── assets/                  → Otros recursos (documentos, fuentes locales, etc.)
 ```
 
-## Funcionalidades adicionales implementadas
+## Funcionalidades implementadas
 
 - 🔍 Buscador de películas
-- 🎯 Filtros por género
+- 🎯 Filtro por género
 - 🌙 Modo oscuro / claro (con persistencia en LocalStorage)
 - ❤️ Sistema de favoritos (con filtro "solo favoritos" y contador dinámico en el navbar)
-- ↕️ Ordenamiento (popularidad, calificación, más recientes)
 - 🔢 Paginación de resultados en Cartelera
-- 📶 Barra de progreso superior mientras se consulta la API de TMDb
+- 🦴 Efecto skeleton mientras cargan los datos de TMDb
 
 ## Instrucciones para ejecutar
 
@@ -69,4 +67,5 @@ UltraVision/
 ## Notas
 
 - La persistencia de datos (boletos y favoritos) se realiza mediante **LocalStorage** del navegador.
+- El formulario de contacto es una simulación: valida los campos pero no envía ningún mensaje real (no hay backend ni servidor de correo).
 - No se procesan pagos reales; el proyecto tiene fines exclusivamente educativos.
