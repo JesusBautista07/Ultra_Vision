@@ -3,9 +3,15 @@
 
 const CLAVE_BOLETOS = "uv-boletos";
 
-// Devuelve todos los boletos guardados
+// Devuelve todos los boletos guardados.
+// Si el LocalStorage tiene datos corruptos, devuelve una lista vacía en vez de romper la página.
 function obtenerBoletos() {
-    return JSON.parse(localStorage.getItem(CLAVE_BOLETOS) || "[]");
+    try {
+        return JSON.parse(localStorage.getItem(CLAVE_BOLETOS) || "[]");
+    } catch (error) {
+        console.error("Datos de boletos corruptos en LocalStorage:", error);
+        return [];
+    }
 }
 
 // Guarda un boleto nuevo. Genera un id único basado en la fecha/hora actual

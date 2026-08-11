@@ -66,7 +66,7 @@ function pintarDetalle(pelicula) {
     </div>`;
 
   if (trailerKey) {
-    document.getElementById("btnVerTrailer").addEventListener("click", () => abrirTrailer(trailerKey));
+    document.getElementById("btnVerTrailer").addEventListener("click", () => abrirTrailer(trailerKey, pelicula.title));
   }
 }
 
@@ -78,8 +78,13 @@ function obtenerTrailerKey(videos) {
 }
 
 // Inserta el iframe de YouTube dentro del modal y lo muestra
-function abrirTrailer(key) {
+function abrirTrailer(key, tituloPelicula) {
   document.getElementById("contenedorTrailer").innerHTML = `
-    <iframe src="https://www.youtube.com/embed/${key}" allowfullscreen></iframe>`;
+    <iframe src="https://www.youtube.com/embed/${key}" title="Trailer de ${tituloPelicula}" allowfullscreen></iframe>`;
   new bootstrap.Modal(document.getElementById("modalTrailer")).show();
 }
+
+// Al cerrar el modal, se borra el iframe para que el video deje de sonar de fondo
+document.getElementById("modalTrailer").addEventListener("hidden.bs.modal", () => {
+  document.getElementById("contenedorTrailer").innerHTML = "";
+});

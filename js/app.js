@@ -33,9 +33,15 @@ function initModoOscuro() {
   });
 }
 
-// Favoritos: se guardan como un arreglo de IDs de película en LocalStorage
+// Favoritos: se guardan como un arreglo de IDs de película en LocalStorage.
+// Si el LocalStorage tiene datos corruptos, devuelve una lista vacía en vez de romper la página.
 function obtenerFavoritos() {
-  return JSON.parse(localStorage.getItem("uv-favoritos") || "[]");
+  try {
+    return JSON.parse(localStorage.getItem("uv-favoritos") || "[]");
+  } catch (error) {
+    console.error("Datos de favoritos corruptos en LocalStorage:", error);
+    return [];
+  }
 }
 
 function esFavorito(movieId) {
