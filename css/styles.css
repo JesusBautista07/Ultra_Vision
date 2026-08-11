@@ -72,16 +72,29 @@ a {
   color: var(--uv-blue-glow) !important;
 }
 
-/* Hero: fondo con degradado azul + una línea de luz animada (::before) */
+
+/* =========================================
+   HERO BASE
+   Se aplica a todas las páginas
+   ========================================= */
+
 .hero-uv {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(47, 111, 237, 0.35), transparent 70%),
-    linear-gradient(180deg, var(--uv-bg) 0%, var(--uv-bg-alt) 100%);
+
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%,
+      rgba(47, 111, 237, 0.35),
+      transparent 70%),
+    linear-gradient(180deg,
+      var(--uv-bg) 0%,
+      var(--uv-bg-alt) 100%);
+
   padding: 5rem 1.5rem 4rem;
   text-align: center;
 }
 
+/* Línea de luz del hero */
 .hero-uv::before {
   content: "";
   position: absolute;
@@ -89,14 +102,18 @@ a {
   left: 50%;
   width: 2px;
   height: 60%;
-  background: linear-gradient(180deg, rgba(91, 140, 255, 0.8), transparent);
+
+  background: linear-gradient(180deg,
+      rgba(91, 140, 255, 0.8),
+      transparent);
+
   transform: translateX(-50%) rotate(0deg);
   filter: blur(1px);
   animation: uv-beam-sweep 6s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Mueve la línea de luz de un lado a otro */
+/* Animación de la línea */
 @keyframes uv-beam-sweep {
 
   0%,
@@ -111,25 +128,176 @@ a {
   }
 }
 
+/* Etiqueta del hero */
 .hero-uv .eyebrow {
   color: var(--uv-blue-glow);
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
 }
 
+/* Títulos de los heroes normales */
 .hero-uv h1 {
+  font-family: var(--font-body);
   font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin: 0.5rem 0 1rem;
 }
 
+/* Texto de los heroes normales */
 .hero-uv p {
   color: var(--uv-gray);
   max-width: 600px;
   margin: 0 auto 2rem;
 }
+
+
+/* =========================================
+   HERO CINEMATOGRÁFICO
+   SOLO PARA INDEX
+   ========================================= */
+
+.pagina-inicio .hero-uv {
+  min-height: 72vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+  text-align: left;
+
+  background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2000&q=85");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay oscuro solamente en Inicio */
+.pagina-inicio .hero-uv-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(90deg,
+      rgba(11, 17, 32, 0.96) 0%,
+      rgba(11, 17, 32, 0.82) 38%,
+      rgba(11, 17, 32, 0.48) 70%,
+      rgba(11, 17, 32, 0.72) 100%);
+}
+
+/* Contenido del Inicio */
+.pagina-inicio .hero-uv-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Texto del Inicio */
+.pagina-inicio .hero-uv-text {
+  max-width: 680px;
+  padding: 5rem 0;
+}
+
+/* Etiqueta del Inicio */
+.pagina-inicio .hero-uv .eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+
+  color: var(--uv-blue-glow);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+/* Título grande solamente en Inicio */
+.pagina-inicio .hero-uv h1 {
+  margin-bottom: 1.25rem;
+
+  font-family: var(--font-body);
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+
+  color: #fff;
+}
+
+/* Descripción del Inicio */
+.pagina-inicio .hero-uv p {
+  max-width: 560px;
+  margin-bottom: 2rem;
+
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Botones del Inicio */
+.pagina-inicio .hero-uv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.pagina-inicio .hero-uv-actions .btn {
+  padding: 0.85rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.pagina-inicio .hero-uv-actions .btn:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  /* Hero normal de todas las páginas */
+  .hero-uv {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+
+  /* Hero cinematográfico del Inicio */
+  .pagina-inicio .hero-uv {
+    min-height: 75vh;
+    padding: 0;
+    background-position: center;
+  }
+
+  .pagina-inicio .hero-uv-text {
+    padding: 4rem 1rem;
+  }
+
+  .pagina-inicio .hero-uv h1 {
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  .pagina-inicio .hero-uv p {
+    font-size: 1rem;
+  }
+
+  .pagina-inicio .hero-uv-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagina-inicio .hero-uv-actions .btn {
+    text-align: center;
+  }
+}
+
 
 /* Botones */
 .btn-uv-primary {
@@ -216,11 +384,6 @@ a {
   color: var(--uv-blue-glow);
 }
 
-@media (max-width: 768px) {
-  .hero-uv {
-    padding: 3.5rem 1rem 2.5rem;
-  }
-}
 
 /* Contorno visible al navegar con teclado (accesibilidad) */
 a:focus-visible,

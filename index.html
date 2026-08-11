@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="pagina-inicio">
 
   <!-- Menú superior -->
   <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
@@ -53,15 +53,33 @@
   </nav>
 
   <!-- Banner principal -->
-  <header class="hero-uv">
-    <p class="eyebrow">Ahora en cartelera</p>
-    <h1>El cine, sin límites</h1>
-    <p>Descubre estrenos, reserva tus asientos y vive la experiencia UltraVision desde donde estés.</p>
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="pages/cartelera.html" class="btn-uv-primary">Ver cartelera</a>
-      <a href="pages/reservas.html" class="btn-uv-outline">Reservar ahora</a>
+  <section class="hero-uv">
+    <div class="hero-uv-overlay"></div>
+
+    <div class="container hero-uv-content">
+      <div class="hero-uv-text">
+        <span class="eyebrow">AHORA EN CARTELERA</span>
+
+        <h1>El cine, sin límites</h1>
+
+        <p>
+          Descubre qué ver esta semana, elige tus asientos
+          y reserva en segundos.
+        </p>
+
+        <div class="hero-uv-actions">
+          <a href="pages/cartelera.html" class="btn btn-primary">
+            Explorar cartelera
+          </a>
+
+          <a href="pages/reservas.html" class="btn btn-outline-light">
+            Reservar una función
+          </a>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
+
 
   <!-- Carrusel de estrenos: empieza vacío, js/app.js lo llena con las 5 películas destacadas -->
   <section class="container my-5">
