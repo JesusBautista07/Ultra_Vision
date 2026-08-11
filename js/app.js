@@ -97,8 +97,8 @@ function pintarCarrusel(peliculas) {
                style="width: 180px; border-radius: 10px;">
           <div>
             <p class="eyebrow mb-1">Destacada</p>
-            <h3 class="text-white">${pelicula.title}</h3>
-            <p class="text-secondary" style="max-width: 500px;">
+            <h3 class="movie-featured-title">${pelicula.title}</h3>
+            <p class="movie-featured-description">
               ${pelicula.overview ? pelicula.overview.slice(0, 180) + "..." : "Sin sinopsis disponible."}
             </p>
             <span class="btn-uv-primary">⭐ ${pelicula.vote_average.toFixed(1)}</span>
@@ -136,7 +136,7 @@ function tarjetaPeliculaHTML(pelicula) {
           <img src="${getPosterUrl(pelicula.poster_path)}" alt="Póster de ${pelicula.title}" loading="lazy">
         </a>
         <div class="card-body p-3">
-          <a href="${rutaDetalle(pelicula.id)}" class="text-white text-decoration-none">
+          <a href="${rutaDetalle(pelicula.id)}" class="movie-title text-decoration-none">
             <h6 class="mb-1">${pelicula.title}</h6>
           </a>
           <small>${pelicula.release_date ? pelicula.release_date.split("-")[0] : "—"} · ⭐ ${pelicula.vote_average.toFixed(1)}</small>

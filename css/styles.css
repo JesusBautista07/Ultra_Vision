@@ -396,33 +396,181 @@ input:focus-visible {
 /* Modo claro: al agregar la clase "light-mode" al body (con JS),
    estas variables se sobrescriben y todo el sitio cambia de color */
 body.light-mode {
-  --uv-bg: #F4F6FB;
-  --uv-bg-alt: #E7ECF7;
+  --uv-bg: #F5F7FB;
+  --uv-bg-alt: #E9EEF7;
   --uv-bg-card: #FFFFFF;
+
+  --uv-blue: #2563EB;
+  --uv-blue-glow: #3B82F6;
+
+  --uv-gray: #475569;
   --uv-black: #FFFFFF;
-  --uv-gray: #4A5568;
-  --uv-white: #0B1120;
+  --uv-white: #0F172A;
 }
 
-body.light-mode .navbar-uv {
-  border-bottom: 1px solid rgba(47, 111, 237, 0.15);
+/* Textos de Bootstrap */
+body.light-mode .text-white {
+  color: var(--uv-white) !important;
 }
 
-body.light-mode .navbar-uv .brand {
-  color: var(--uv-white);
+body.light-mode .text-secondary {
+  color: var(--uv-gray) !important;
 }
+
+body.light-mode .text-dark {
+  color: var(--uv-white) !important;
+}
+
+
+/* =========================================================
+   TEMA CLARO — HERO DEL INICIO
+   ========================================================= */
+
+/* Imagen diferente SOLO para el Inicio */
+body.light-mode.pagina-inicio .hero-uv {
+    background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Overlay claro para la imagen del Inicio */
+body.light-mode.pagina-inicio .hero-uv-overlay {
+    background: linear-gradient(
+        90deg,
+        rgba(248, 250, 255, 0.92) 0%,
+        rgba(248, 250, 255, 0.78) 38%,
+        rgba(248, 250, 255, 0.38) 70%,
+        rgba(248, 250, 255, 0.55) 100%
+    );
+}
+
+/* Texto del Hero del Inicio en modo claro */
+body.light-mode.pagina-inicio .hero-uv h1 {
+    color: #0B1120 !important;
+}
+
+body.light-mode.pagina-inicio .hero-uv p {
+    color: #334155 !important;
+}
+
+body.light-mode.pagina-inicio .hero-uv .eyebrow {
+    color: #2563EB !important;
+}
+
+/* Botón secundario del Inicio */
+body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light {
+    color: #0B1120;
+    border-color: #0B1120;
+}
+
+body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
+    color: #2563EB;
+    border-color: #2563EB;
+}
+
+/* =========================================================
+   HERO DE PÁGINAS INTERNAS — MODO CLARO
+   ========================================================= */
+
+/* Cartelera, Mis Boletos, Contacto, etc. */
+body.light-mode:not(.pagina-inicio) .hero-uv h1 {
+    color: #0B1120 !important;
+}
+
+body.light-mode:not(.pagina-inicio) .hero-uv p {
+    color: #475569 !important;
+}
+
+body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
+    color: #2563EB !important;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
 
 body.light-mode .card-uv {
-  border: 1px solid rgba(11, 17, 32, 0.08);
-  box-shadow: 0 2px 10px rgba(11, 17, 32, 0.06);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
-body.light-mode .footer-uv {
-  border-top: 1px solid rgba(47, 111, 237, 0.15);
+body.light-mode .card-uv:hover {
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14);
 }
 
-body.light-mode .table-uv {
-  color: var(--uv-white);
+/* =========================================================
+   FAVORITOS
+   ========================================================= */
+
+body.light-mode .btn-favorito {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0F172A;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   TÍTULOS DE PELÍCULAS
+   ========================================================= */
+
+body.light-mode .movie-title {
+  color: #0F172A;
+}
+
+body.light-mode .movie-title:hover {
+  color: var(--uv-blue);
+}
+
+/* =========================================================
+   ESTRENOS DESTACADOS
+   ========================================================= */
+
+body.light-mode .movie-featured-title {
+  color: #0F172A;
+}
+
+body.light-mode .movie-featured-description {
+  color: var(--uv-gray);
+}
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+body.light-mode .form-control,
+body.light-mode .form-select {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+body.light-mode .form-control::placeholder {
+  color: #64748B;
+}
+
+body.light-mode .form-control:focus,
+body.light-mode .form-select:focus {
+  border-color: var(--uv-blue);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+body.light-mode .form-check-label {
+  color: var(--uv-gray) !important;
+}
+
+body.light-mode .form-check-input {
+  border-color: #94A3B8;
+}
+
+body.light-mode .form-check-input:checked {
+  background-color: var(--uv-blue);
+  border-color: var(--uv-blue);
 }
 
 /* Botón de tema (🌙 / ☀️) */
@@ -581,4 +729,15 @@ body.light-mode .table-uv {
 
 .table-uv caption {
   color: var(--uv-gray);
+}
+
+
+/* =========================================================
+   CORRECCIÓN NAVBAR — RESERVAS
+   Bootstrap + Tailwind utilizan la clase "collapse"
+   con significados diferentes.
+   ========================================================= */
+
+.navbar-uv .navbar-collapse.visible {
+    visibility: visible !important;
 }
