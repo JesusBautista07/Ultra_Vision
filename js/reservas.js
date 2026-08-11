@@ -47,7 +47,7 @@ function pintarMapaAsientos() {
             boton.textContent = idAsiento;
             boton.disabled = ocupado;
 
-            const clasesBase = "w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
+            const clasesBase = "asiento-uv rounded flex items-center justify-center transition-colors";
 
             boton.className = ocupado
                 ? `${clasesBase} bg-white/10 text-white/30 cursor-not-allowed`
@@ -64,7 +64,7 @@ function pintarMapaAsientos() {
 
 // Selecciona/deselecciona un asiento y actualiza su estilo
 function alternarAsiento(idAsiento, boton) {
-    const clasesBase = "w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
+    const clasesBase = "asiento-uv rounded flex items-center justify-center transition-colors";
 
     if (asientosSeleccionados.includes(idAsiento)) {
         asientosSeleccionados = asientosSeleccionados.filter((a) => a !== idAsiento);
