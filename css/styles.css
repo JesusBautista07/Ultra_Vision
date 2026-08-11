@@ -73,10 +73,7 @@ a {
 }
 
 
-/* =========================================
-   HERO BASE
-   Se aplica a todas las páginas
-   ========================================= */
+/* HERO BASE - Se aplica a todas las páginas */
 
 .hero-uv {
   position: relative;
@@ -155,10 +152,7 @@ a {
 }
 
 
-/* =========================================
-   HERO CINEMATOGRÁFICO
-   SOLO PARA INDEX
-   ========================================= */
+/* HERO CINEMATOGRÁFICO - SOLO PARA INDEX */
 
 .pagina-inicio .hero-uv {
   min-height: 72vh;
@@ -258,9 +252,7 @@ a {
 }
 
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
 
@@ -487,9 +479,7 @@ body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
 }
 
 
-/* =========================================================
-   CARDS
-   ========================================================= */
+/* CARDS */
 
 body.light-mode .card-uv {
   background-color: #FFFFFF;
@@ -501,9 +491,7 @@ body.light-mode .card-uv:hover {
   box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14);
 }
 
-/* =========================================================
-   FAVORITOS
-   ========================================================= */
+/* FAVORITOS */
 
 body.light-mode .btn-favorito {
   background: rgba(255, 255, 255, 0.92);
@@ -511,9 +499,7 @@ body.light-mode .btn-favorito {
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
 }
 
-/* =========================================================
-   TÍTULOS DE PELÍCULAS
-   ========================================================= */
+/* TITULOS DE PELICULAS */
 
 body.light-mode .movie-title {
   color: #0F172A;
@@ -523,9 +509,7 @@ body.light-mode .movie-title:hover {
   color: var(--uv-blue);
 }
 
-/* =========================================================
-   ESTRENOS DESTACADOS
-   ========================================================= */
+/* ESTRENOS DESTACADOS */
 
 body.light-mode .movie-featured-title {
   color: #0F172A;
@@ -535,9 +519,7 @@ body.light-mode .movie-featured-description {
   color: var(--uv-gray);
 }
 
-/* =========================================================
-   FORMULARIOS
-   ========================================================= */
+/* FORMULARIOS */
 
 body.light-mode .form-control,
 body.light-mode .form-select {
@@ -556,9 +538,7 @@ body.light-mode .form-select:focus {
   box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
 }
 
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
+/* CHECKBOX */
 
 body.light-mode .form-check-label {
   color: var(--uv-gray) !important;
@@ -732,12 +712,147 @@ body.light-mode .form-check-input:checked {
 }
 
 
-/* =========================================================
-   CORRECCIÓN NAVBAR — RESERVAS
-   Bootstrap + Tailwind utilizan la clase "collapse"
-   con significados diferentes.
-   ========================================================= */
+/* CORRECCIÓN NAVBAR — RESERVAS Bootstrap + Tailwind utilizan la clase "collapse" con significados diferentes. */
 
 .navbar-uv .navbar-collapse.visible {
     visibility: visible !important;
+}
+
+
+/* RESERVAS — MODO CLARO */
+
+/* Fondo general */
+body.light-mode main.reservas-page {
+    background: #F5F7FB !important;
+    color: #0F172A !important;
+}
+
+/* Contenedor principal de los paneles */
+body.light-mode .reservas-page > div > .grid > div.bg-uvbgalt {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* TÍTULOS */
+
+body.light-mode .reservas-page h1.text-white {
+    color: #0F172A !important;
+}
+
+body.light-mode .reservas-page h2.text-white {
+    color: #0F172A !important;
+}
+
+body.light-mode .reservas-page .text-uvglow {
+    color: #2563EB !important;
+}
+
+/* TEXTOS */
+
+body.light-mode .reservas-page .text-uvgray {
+    color: #64748B !important;
+}
+
+body.light-mode .reservas-page .text-white {
+    color: #0F172A !important;
+}
+
+/* SELECTS */
+
+body.light-mode .reservas-page select.bg-uvcard {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+}
+
+body.light-mode .reservas-page select.bg-uvcard option {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+}
+
+/* INPUTS */
+
+body.light-mode .reservas-page input.bg-uvcard {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+}
+
+body.light-mode .reservas-page input.bg-uvcard::placeholder {
+    color: #94A3B8 !important;
+}
+
+body.light-mode .reservas-page input.bg-uvcard:focus,
+body.light-mode .reservas-page select.bg-uvcard:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* PANTALLA */
+
+body.light-mode .reservas-page .via-uvglow {
+    --tw-gradient-to: #2563EB !important;
+}
+
+/* Barra de pantalla */
+body.light-mode .reservas-page
+.bg-gradient-to-r {
+    background-image: linear-gradient(
+        to right,
+        transparent,
+        #2563EB,
+        transparent
+    ) !important;
+}
+
+body.light-mode .reservas-page .uppercase {
+    color: #64748B;
+}
+
+/* MAPA DE ASIENTOS */
+
+body.light-mode #mapaAsientos button {
+    background: #FFFFFF !important;
+    color: #334155 !important;
+    border-color: #94A3B8 !important;
+}
+
+body.light-mode #mapaAsientos button:hover {
+    background: #EFF6FF !important;
+    color: #2563EB !important;
+    border-color: #2563EB !important;
+}
+
+/* LEYENDA */
+
+body.light-mode .reservas-page .bg-uvcard {
+    background: #FFFFFF !important;
+}
+
+body.light-mode .reservas-page .border-white\/20 {
+    border-color: #94A3B8 !important;
+}
+
+body.light-mode .reservas-page .bg-white\/10 {
+    background: #E2E8F0 !important;
+}
+
+/* BOTÓN CONFIRMAR */
+
+body.light-mode .reservas-page button[type="submit"] {
+    background: #2563EB !important;
+    color: #FFFFFF !important;
+}
+
+body.light-mode .reservas-page button[type="submit"]:hover {
+    background: #1D4ED8 !important;
+}
+
+/* MENSAJE DE ÉXITO */
+
+body.light-mode .reservas-page #mensajeExito {
+    background: #ECFDF5 !important;
+    border-color: #86EFAC !important;
+    color: #15803D !important;
 }
