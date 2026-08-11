@@ -1,6 +1,28 @@
 // Lógica exclusiva de pages/reservas.html
 
-const PRECIO_BOLETO = 12000;
+const FUNCIONES = {
+    "Hoy 3:00 PM": {
+        sala: 1,
+        precio: 10000
+    },
+    "Hoy 6:00 PM": {
+        sala: 2,
+        precio: 14000
+    },
+    "Hoy 9:00 PM": {
+        sala: 3,
+        precio: 16000
+    },
+    "Mañana 4:00 PM": {
+        sala: 1,
+        precio: 12000
+    },
+    "Mañana 7:30 PM": {
+        sala: 2,
+        precio: 15000
+    }
+};
+
 const FILAS = ["A", "B", "C", "D", "E", "F"];
 const COLUMNAS = 8;
 
@@ -12,9 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     generarAsientosOcupados();
     pintarMapaAsientos();
     cargarPeliculasSelect();
+
+    const selectFuncion = document.getElementById("selectFuncion");
+
+    actualizarDatosFuncion();
+
+    selectFuncion.addEventListener("change", () => {
+        actualizarDatosFuncion();
+        actualizarResumen();
+    });
+
     actualizarResumen();
 
-    document.getElementById("formReserva").addEventListener("submit", manejarSubmitReserva);
+    document
+        .getElementById("formReserva")
+        .addEventListener("submit", manejarSubmitReserva);
 });
 
 // Simula asientos ya ocupados (aleatorios, fijos por sesión de página)
@@ -77,11 +111,36 @@ function alternarAsiento(idAsiento, boton) {
     actualizarResumen();
 }
 
+// Obtiene la sala y el precio correspondientes al horario seleccionado
+function obtenerFuncionSeleccionada() {
+    const horario = document.getElementById("selectFuncion").value;
+
+    return FUNCIONES[horario] || {
+        sala: 1,
+        precio: 10000
+    };
+}
+
+// Actualiza en pantalla la sala y el precio según el horario
+function actualizarDatosFuncion() {
+    const funcion = obtenerFuncionSeleccionada();
+
+    document.getElementById("resumenSala").textContent = `Sala ${funcion.sala}`;
+    document.getElementById("resumenPrecio").textContent =
+        `$${funcion.precio.toLocaleString("es-CO")}`;
+}
+
 // Actualiza cantidad y total en pantalla
 function actualizarResumen() {
-    document.getElementById("resumenCantidad").textContent = asientosSeleccionados.length;
-    const total = asientosSeleccionados.length * PRECIO_BOLETO;
-    document.getElementById("resumenTotal").textContent = `$${total.toLocaleString("es-CO")}`;
+    const funcion = obtenerFuncionSeleccionada();
+
+    document.getElementById("resumenCantidad").textContent =
+        asientosSeleccionados.length;
+
+    const total = asientosSeleccionados.length * funcion.precio;
+
+    document.getElementById("resumenTotal").textContent =
+        `$${total.toLocaleString("es-CO")}`;
 }
 
 // Carga las películas populares en el <select>, desde la API.
@@ -141,13 +200,17 @@ function manejarSubmitReserva(evento) {
     const opcionSeleccionada = selectPelicula.options[selectPelicula.selectedIndex];
 
     // Arma el boleto con los datos del formulario y la selección
+    const funcion = obtenerFuncionSeleccionada();
+
     const boleto = {
         movieId: selectPelicula.value,
         movieTitle: opcionSeleccionada?.dataset.titulo || "Película",
         poster: opcionSeleccionada?.dataset.poster || "",
         funcion: document.getElementById("selectFuncion").value,
+        sala: funcion.sala,
+        precioBoleto: funcion.precio,
         asientos: [...asientosSeleccionados],
-        total: asientosSeleccionados.length * PRECIO_BOLETO,
+        total: asientosSeleccionados.length * funcion.precio,
         comprador: { nombre, email },
         fechaCompra: new Date().toISOString(),
     };
