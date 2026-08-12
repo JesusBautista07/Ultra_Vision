@@ -98,14 +98,26 @@ function pintarMapaAsientos() {
 
 // Selecciona/deselecciona un asiento y actualiza su estilo
 function alternarAsiento(idAsiento, boton) {
-    const clasesBase = "w-8 h-8 text-[10px] rounded flex items-center justify-center transition-colors";
+    const clasesBase =
+        "asiento-uv rounded flex items-center justify-center transition-colors";
+
+    const clasesDisponible =
+        `${clasesBase} bg-uvcard text-uvgray border border-white/10 hover:border-uvglow cursor-pointer`;
 
     if (asientosSeleccionados.includes(idAsiento)) {
-        asientosSeleccionados = asientosSeleccionados.filter((a) => a !== idAsiento);
-        boton.className = `${clasesBase}`;
+        // Deseleccionar
+        asientosSeleccionados = asientosSeleccionados.filter(
+            (a) => a !== idAsiento
+        );
+
+        // Restaurar apariencia de asiento disponible
+        boton.className = clasesDisponible;
     } else {
+        // Seleccionar
         asientosSeleccionados.push(idAsiento);
-        boton.className = `${clasesBase} asiento-seleccionado`;
+
+        boton.className =
+            `${clasesBase} asiento-seleccionado cursor-pointer`;
     }
 
     actualizarResumen();

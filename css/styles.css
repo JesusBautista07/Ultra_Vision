@@ -74,7 +74,6 @@ a {
 
 
 /* HERO BASE - Se aplica a todas las páginas */
-
 .hero-uv {
   position: relative;
   overflow: hidden;
@@ -153,7 +152,6 @@ a {
 
 
 /* HERO CINEMATOGRÁFICO - SOLO PARA INDEX */
-
 .pagina-inicio .hero-uv {
   min-height: 72vh;
 
@@ -253,7 +251,6 @@ a {
 
 
 /* RESPONSIVE */
-
 @media (max-width: 768px) {
 
   /* Hero normal de todas las páginas */
@@ -415,9 +412,7 @@ body.light-mode .text-dark {
 }
 
 
-/* =========================================================
-  TEMA CLARO — HERO DEL INICIO
-  ========================================================= */
+/* TEMA CLARO — HERO DEL INICIO */
 
 /* Imagen diferente SOLO para el Inicio */
 body.light-mode.pagina-inicio .hero-uv {
@@ -460,9 +455,7 @@ body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
   border-color: #2563EB;
 }
 
-/* =========================================================
-  HERO DE PÁGINAS INTERNAS — MODO CLARO
-  ========================================================= */
+/* HERO DE PÁGINAS INTERNAS — MODO CLARO */
 
 /* Cartelera, Mis Boletos, Contacto, etc. */
 body.light-mode:not(.pagina-inicio) .hero-uv h1 {
@@ -479,7 +472,6 @@ body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
 
 
 /* CARDS */
-
 body.light-mode .card-uv {
   background-color: #FFFFFF;
   border: 1px solid rgba(15, 23, 42, 0.07);
@@ -491,7 +483,6 @@ body.light-mode .card-uv:hover {
 }
 
 /* FAVORITOS */
-
 body.light-mode .btn-favorito {
   background: rgba(255, 255, 255, 0.92);
   color: #0F172A;
@@ -499,7 +490,6 @@ body.light-mode .btn-favorito {
 }
 
 /* TITULOS DE PELICULAS */
-
 body.light-mode .movie-title {
   color: #0F172A;
 }
@@ -509,7 +499,6 @@ body.light-mode .movie-title:hover {
 }
 
 /* ESTRENOS DESTACADOS */
-
 body.light-mode .movie-featured-title {
   color: #0F172A;
 }
@@ -519,7 +508,6 @@ body.light-mode .movie-featured-description {
 }
 
 /* FORMULARIOS */
-
 body.light-mode .form-control,
 body.light-mode .form-select {
   background-color: #FFFFFF;
@@ -538,7 +526,6 @@ body.light-mode .form-select:focus {
 }
 
 /* CHECKBOX */
-
 body.light-mode .form-check-label {
   color: var(--uv-gray) !important;
 }
@@ -711,19 +698,13 @@ body.light-mode .form-check-input:checked {
 }
 
 
-/* CORRECCIÓN NAVBAR — RESERVAS
-Bootstrap + Tailwind utilizan la clase "collapse"
-con significados diferentes. */
-
+/* CORRECCIÓN NAVBAR — RESERVAS Bootstrap + Tailwind utilizan la clase "collapse" con significados diferentes. */
 .navbar-uv .navbar-collapse.visible {
   visibility: visible !important;
 }
 
 
-/* =========================================================
-   MAPA DE ASIENTOS
-   ========================================================= */
-
+/* MAPA DE ASIENTOS */
 .mapa-asientos-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -761,10 +742,7 @@ con significados diferentes. */
 }
 
 
-/* =========================================================
-   MÓVIL
-   ========================================================= */
-
+/* MÓVIL */
 @media (max-width: 576px) {
 
   .mapa-asientos-wrapper {
@@ -793,7 +771,6 @@ con significados diferentes. */
 
 
 /* Asiento seleccionado */
-
 .asiento-uv.asiento-seleccionado {
   background-color: #2F6FED !important;
   color: #FFFFFF !important;
@@ -801,167 +778,169 @@ con significados diferentes. */
 }
 
 
-/* =========================================================
-   RESERVAS — MODO CLARO
-   ========================================================= */
+/* RESERVAS — MODO CLARO COMPLETO */
 
 /* Fondo general */
-
-body.light-mode main.reservas-page {
-  background: #F5F7FB !important;
-  color: #0F172A !important;
+body.light-mode .reservas-page {
+    background: #F5F7FB !important;
+    color: #0F172A !important;
 }
 
-
-/* Contenedor principal de los paneles */
-
-body.light-mode .reservas-page>div>.grid>div.bg-uvbgalt {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+/* Panel izquierdo y resumen */
+body.light-mode .reservas-page .reserva-panel,
+body.light-mode .reservas-page .resumen-panel {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
 }
 
-
-/* TÍTULOS */
-
-body.light-mode .reservas-page h1.text-white {
-  color: #0F172A !important;
+/* Títulos */
+body.light-mode .reservas-page h1,
+body.light-mode .reservas-page h2 {
+    color: #0F172A !important;
 }
 
-body.light-mode .reservas-page h2.text-white {
-  color: #0F172A !important;
-}
-
-body.light-mode .reservas-page .text-uvglow {
-  color: #2563EB !important;
-}
-
-
-/* TEXTOS */
-
+/* Etiquetas y textos secundarios */
+body.light-mode .reservas-page label,
 body.light-mode .reservas-page .text-uvgray {
-  color: #64748B !important;
+    color: #64748B !important;
 }
 
+/* Texto blanco usado por Tailwind */
 body.light-mode .reservas-page .text-white {
-  color: #0F172A !important;
+    color: #0F172A !important;
 }
 
-
-/* SELECTS */
-
-body.light-mode .reservas-page select.bg-uvcard {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+/* Precio total */
+body.light-mode .reservas-page .text-uvglow {
+    color: #2563EB !important;
 }
 
-body.light-mode .reservas-page select.bg-uvcard option {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
+/* Selects */
+body.light-mode .reservas-page #selectPelicula,
+body.light-mode .reservas-page #selectFuncion {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
 }
 
-
-/* INPUTS */
-
-body.light-mode .reservas-page input.bg-uvcard {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+body.light-mode .reservas-page #selectPelicula option,
+body.light-mode .reservas-page #selectFuncion option {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
 }
 
-body.light-mode .reservas-page input.bg-uvcard::placeholder {
-  color: #94A3B8 !important;
+/* Inputs */
+body.light-mode .reservas-page input {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
 }
 
-body.light-mode .reservas-page input.bg-uvcard:focus,
-body.light-mode .reservas-page select.bg-uvcard:focus {
-  border-color: #2563EB !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+body.light-mode .reservas-page input::placeholder {
+    color: #94A3B8 !important;
 }
 
-
-/* PANTALLA */
-
-body.light-mode .reservas-page .via-uvglow {
-  --tw-gradient-to: #2563EB !important;
+body.light-mode .reservas-page input:focus,
+body.light-mode .reservas-page select:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
 }
 
+/* Línea de pantalla */
 body.light-mode .reservas-page .bg-gradient-to-r {
-  background-image: linear-gradient(to right,
-      transparent,
-      #2563EB,
-      transparent) !important;
+    background-image: linear-gradient(
+        to right,
+        transparent,
+        #2563EB,
+        transparent
+    ) !important;
 }
 
+/* Texto "PANTALLA" */
 body.light-mode .reservas-page .uppercase {
-  color: #64748B;
+    color: #64748B !important;
 }
 
 
-/* MAPA DE ASIENTOS — MODO CLARO */
+/* ASIENTOS — MODO CLARO */
 
-body.light-mode #mapaAsientos button {
-  background: #FFFFFF !important;
-  color: #334155 !important;
-  border-color: #94A3B8 !important;
+/* Asiento disponible */
+body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled) {
+    background-color: #FFFFFF !important;
+    color: #334155 !important;
+    border: 1px solid #94A3B8 !important;
 }
 
-body.light-mode #mapaAsientos button:hover {
-  background: #EFF6FF !important;
-  color: #2563EB !important;
-  border-color: #2563EB !important;
+/* Hover asiento disponible */
+body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled):hover {
+    background-color: #EFF6FF !important;
+    color: #2563EB !important;
+    border-color: #2563EB !important;
+}
+
+/* Asiento seleccionado */
+body.light-mode .reservas-page #mapaAsientos .asiento-seleccionado {
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
+    border-color: #2563EB !important;
+}
+
+/* Asiento ocupado */
+body.light-mode .reservas-page #mapaAsientos .asiento-uv:disabled {
+    background-color: #E2E8F0 !important;
+    color: #94A3B8 !important;
+    border-color: #CBD5E1 !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
 }
 
 
 /* LEYENDA */
-
 body.light-mode .reservas-page .bg-uvcard {
-  background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
 }
 
-body.light-mode .reservas-page .border-white\/20 {
-  border-color: #94A3B8 !important;
+body.light-mode .reservas-page .bg-uvblue {
+    background-color: #2563EB !important;
 }
 
 body.light-mode .reservas-page .bg-white\/10 {
-  background: #E2E8F0 !important;
+    background-color: #E2E8F0 !important;
+}
+
+body.light-mode .reservas-page .border-white\/20 {
+    border-color: #94A3B8 !important;
 }
 
 
 /* BOTÓN CONFIRMAR */
-
 body.light-mode .reservas-page button[type="submit"] {
-  background: #2563EB !important;
-  color: #FFFFFF !important;
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
 }
 
 body.light-mode .reservas-page button[type="submit"]:hover {
-  background: #1D4ED8 !important;
+    background-color: #1D4ED8 !important;
+}
+
+
+/* MENSAJES DE ERROR */
+body.light-mode .reservas-page .text-red-400 {
+    color: #DC2626 !important;
 }
 
 
 /* MENSAJE DE ÉXITO */
-
 body.light-mode .reservas-page #mensajeExito {
-  background: #ECFDF5 !important;
-  border-color: #86EFAC !important;
-  color: #15803D !important;
-}
-
-
-/* PANEL DE ASIENTOS */
-
-body.light-mode .reservas-page .reserva-panel,
-body.light-mode .reservas-page .resumen-panel {
-  background: #FFFFFF !important;
-  border: 1px solid #E2E8F0 !important;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
+    background-color: #ECFDF5 !important;
+    border-color: #86EFAC !important;
+    color: #15803D !important;
 }
 
 
 /* MODO OSCURO */
-
 body:not(.light-mode) .reservas-page .reserva-panel,
 body:not(.light-mode) .reservas-page .resumen-panel {
   background: #141C30;
