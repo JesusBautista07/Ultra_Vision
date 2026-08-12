@@ -772,28 +772,34 @@ body.light-mode .form-check-input:checked {
   #mapaAsientos .asiento-uv {
     width: 28px !important;
     height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
 
+    padding: 0 !important;
+    margin: 0 !important;
+
+    transform: none !important;
+    scale: 1 !important;
+  }
+
+  /* Mantener visible el estado seleccionado */
+  #mapaAsientos .asiento-uv.asiento-seleccionado {
+    width: 28px !important;
+    height: 28px !important;
     min-width: 28px !important;
     min-height: 28px !important;
 
     padding: 0 !important;
     margin: 0 !important;
 
-    font-size: 9px !important;
-    line-height: 1 !important;
-
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0 !important;
-  }
-
-  /* Mantener visible el estado seleccionado */
-  #mapaAsientos .asiento-uv.asiento-seleccionado {
     background-color: #2F6FED !important;
     color: #FFFFFF !important;
     border-color: #2F6FED !important;
+
+    transform: none !important;
+    scale: 1 !important;
   }
 }
 
@@ -810,85 +816,83 @@ body.light-mode .form-check-input:checked {
 
 /* Fondo general */
 body.light-mode .reservas-page {
-    background: #F5F7FB !important;
-    color: #0F172A !important;
+  background: #F5F7FB !important;
+  color: #0F172A !important;
 }
 
 /* Panel izquierdo y resumen */
 body.light-mode .reservas-page .reserva-panel,
 body.light-mode .reservas-page .resumen-panel {
-    background: #FFFFFF !important;
-    color: #0F172A !important;
-    border: 1px solid #E2E8F0 !important;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
 }
 
 /* Títulos */
 body.light-mode .reservas-page h1,
 body.light-mode .reservas-page h2 {
-    color: #0F172A !important;
+  color: #0F172A !important;
 }
 
 /* Etiquetas y textos secundarios */
 body.light-mode .reservas-page label,
 body.light-mode .reservas-page .text-uvgray {
-    color: #64748B !important;
+  color: #64748B !important;
 }
 
 /* Texto blanco usado por Tailwind */
 body.light-mode .reservas-page .text-white {
-    color: #0F172A !important;
+  color: #0F172A !important;
 }
 
 /* Precio total */
 body.light-mode .reservas-page .text-uvglow {
-    color: #2563EB !important;
+  color: #2563EB !important;
 }
 
 /* Selects */
 body.light-mode .reservas-page #selectPelicula,
 body.light-mode .reservas-page #selectFuncion {
-    background-color: #FFFFFF !important;
-    color: #0F172A !important;
-    border-color: #CBD5E1 !important;
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
 }
 
 body.light-mode .reservas-page #selectPelicula option,
 body.light-mode .reservas-page #selectFuncion option {
-    background-color: #FFFFFF !important;
-    color: #0F172A !important;
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
 }
 
 /* Inputs */
 body.light-mode .reservas-page input {
-    background-color: #FFFFFF !important;
-    color: #0F172A !important;
-    border-color: #CBD5E1 !important;
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
 }
 
 body.light-mode .reservas-page input::placeholder {
-    color: #94A3B8 !important;
+  color: #94A3B8 !important;
 }
 
 body.light-mode .reservas-page input:focus,
 body.light-mode .reservas-page select:focus {
-    border-color: #2563EB !important;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
 }
 
 /* Línea de pantalla */
 body.light-mode .reservas-page .bg-gradient-to-r {
-    background-image: linear-gradient(
-        to right,
-        transparent,
-        #2563EB,
-        transparent
-    ) !important;
+  background-image: linear-gradient(to right,
+      transparent,
+      #2563EB,
+      transparent) !important;
 }
 
 /* Texto "PANTALLA" */
 body.light-mode .reservas-page .uppercase {
-    color: #64748B !important;
+  color: #64748B !important;
 }
 
 
@@ -896,75 +900,75 @@ body.light-mode .reservas-page .uppercase {
 
 /* Asiento disponible */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled) {
-    background-color: #FFFFFF !important;
-    color: #334155 !important;
-    border: 1px solid #94A3B8 !important;
+  background-color: #FFFFFF !important;
+  color: #334155 !important;
+  border: 1px solid #94A3B8 !important;
 }
 
 /* Hover asiento disponible */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled):hover {
-    background-color: #EFF6FF !important;
-    color: #2563EB !important;
-    border-color: #2563EB !important;
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  border-color: #2563EB !important;
 }
 
 /* Asiento seleccionado */
 body.light-mode .reservas-page #mapaAsientos .asiento-seleccionado {
-    background-color: #2563EB !important;
-    color: #FFFFFF !important;
-    border-color: #2563EB !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+  border-color: #2563EB !important;
 }
 
 /* Asiento ocupado */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:disabled {
-    background-color: #E2E8F0 !important;
-    color: #94A3B8 !important;
-    border-color: #CBD5E1 !important;
-    cursor: not-allowed !important;
-    opacity: 1 !important;
+  background-color: #E2E8F0 !important;
+  color: #94A3B8 !important;
+  border-color: #CBD5E1 !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
 }
 
 
 /* LEYENDA */
 body.light-mode .reservas-page .bg-uvcard {
-    background-color: #FFFFFF !important;
+  background-color: #FFFFFF !important;
 }
 
 body.light-mode .reservas-page .bg-uvblue {
-    background-color: #2563EB !important;
+  background-color: #2563EB !important;
 }
 
 body.light-mode .reservas-page .bg-white\/10 {
-    background-color: #E2E8F0 !important;
+  background-color: #E2E8F0 !important;
 }
 
 body.light-mode .reservas-page .border-white\/20 {
-    border-color: #94A3B8 !important;
+  border-color: #94A3B8 !important;
 }
 
 
 /* BOTÓN CONFIRMAR */
 body.light-mode .reservas-page button[type="submit"] {
-    background-color: #2563EB !important;
-    color: #FFFFFF !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
 }
 
 body.light-mode .reservas-page button[type="submit"]:hover {
-    background-color: #1D4ED8 !important;
+  background-color: #1D4ED8 !important;
 }
 
 
 /* MENSAJES DE ERROR */
 body.light-mode .reservas-page .text-red-400 {
-    color: #DC2626 !important;
+  color: #DC2626 !important;
 }
 
 
 /* MENSAJE DE ÉXITO */
 body.light-mode .reservas-page #mensajeExito {
-    background-color: #ECFDF5 !important;
-    border-color: #86EFAC !important;
-    color: #15803D !important;
+  background-color: #ECFDF5 !important;
+  border-color: #86EFAC !important;
+  color: #15803D !important;
 }
 
 
