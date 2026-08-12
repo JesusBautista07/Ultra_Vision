@@ -1,5 +1,4 @@
 /* Colores y tipografías principales del sitio, reutilizables en todo el CSS */
-
 :root {
     --uv-bg: #0B1120;
     --uv-bg-alt: #141C30;
@@ -27,10 +26,7 @@ body {
     padding: 0;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
     font-family: var(--font-body);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -48,7 +44,6 @@ a {
 
 
 /* Navbar */
-
 .navbar-uv {
     background-color: var(--uv-black);
     border-bottom: 1px solid rgba(91, 140, 255, 0.15);
@@ -75,7 +70,6 @@ a {
 
 
 /* HERO BASE - Se aplica a todas las páginas */
-
 .hero-uv {
     position: relative;
     overflow: hidden;
@@ -86,7 +80,6 @@ a {
 
 
 /* Línea de luz del hero */
-
 .hero-uv::before {
     content: "";
     position: absolute;
@@ -103,7 +96,6 @@ a {
 
 
 /* Animación de la línea */
-
 @keyframes uv-beam-sweep {
     0%,
     100% {
@@ -118,7 +110,6 @@ a {
 
 
 /* Etiqueta del hero */
-
 .hero-uv .eyebrow {
     color: var(--uv-blue-glow);
     font-family: var(--font-body);
@@ -130,7 +121,6 @@ a {
 
 
 /* Títulos de los heroes normales */
-
 .hero-uv h1 {
     font-family: var(--font-body);
     font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -141,7 +131,6 @@ a {
 
 
 /* Texto de los heroes normales */
-
 .hero-uv p {
     color: var(--uv-gray);
     max-width: 600px;
@@ -150,7 +139,6 @@ a {
 
 
 /* HERO CINEMATOGRÁFICO - SOLO PARA INDEX */
-
 .pagina-inicio .hero-uv {
     min-height: 72vh;
     display: flex;
@@ -164,7 +152,6 @@ a {
 
 
 /* Overlay oscuro solamente en Inicio */
-
 .pagina-inicio .hero-uv-overlay {
     position: absolute;
     inset: 0;
@@ -173,7 +160,6 @@ a {
 
 
 /* Contenido del Inicio */
-
 .pagina-inicio .hero-uv-content {
     position: relative;
     z-index: 2;
@@ -182,7 +168,6 @@ a {
 
 
 /* Texto del Inicio */
-
 .pagina-inicio .hero-uv-text {
     max-width: 680px;
     padding: 5rem 0;
@@ -190,7 +175,6 @@ a {
 
 
 /* Etiqueta del Inicio */
-
 .pagina-inicio .hero-uv .eyebrow {
     display: inline-block;
     margin-bottom: 1rem;
@@ -204,7 +188,6 @@ a {
 
 
 /* Título grande solamente en Inicio */
-
 .pagina-inicio .hero-uv h1 {
     margin-bottom: 1.25rem;
     font-family: var(--font-body);
@@ -217,7 +200,6 @@ a {
 
 
 /* Descripción del Inicio */
-
 .pagina-inicio .hero-uv p {
     max-width: 560px;
     margin-bottom: 2rem;
@@ -228,7 +210,6 @@ a {
 
 
 /* Botones del Inicio */
-
 .pagina-inicio .hero-uv-actions {
     display: flex;
     flex-wrap: wrap;
@@ -248,7 +229,6 @@ a {
 
 
 /* RESPONSIVE */
-
 @media (max-width: 768px) {
     /* Hero normal de todas las páginas */
     .hero-uv {
@@ -280,7 +260,6 @@ a {
 
 
 /* Botones */
-
 .btn-uv-primary {
     background-color: var(--uv-blue);
     color: var(--uv-white);
@@ -313,7 +292,6 @@ a {
 
 
 /* Tarjetas de película */
-
 .card-uv {
     position: relative;
     /* para poder ubicar el botón de favorito adentro */
@@ -346,7 +324,6 @@ a {
 
 
 /* Línea azul a la izquierda de cada título de sección */
-
 .section-title {
     border-left: 4px solid var(--uv-blue);
     padding-left: 0.8rem;
@@ -355,7 +332,6 @@ a {
 
 
 /* Footer */
-
 .footer-uv {
     background-color: var(--uv-black);
     color: var(--uv-gray);
@@ -373,7 +349,6 @@ a {
 
 
 /* Contorno visible al navegar con teclado (accesibilidad) */
-
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
@@ -384,7 +359,6 @@ input:focus-visible {
 
 /* Modo claro: al agregar la clase "light-mode" al body (con JS),
   estas variables se sobrescriben y todo el sitio cambia de color */
-
 body.light-mode {
     --uv-bg: #F5F7FB;
     --uv-bg-alt: #E9EEF7;
@@ -398,7 +372,6 @@ body.light-mode {
 
 
 /* Textos de Bootstrap */
-
 body.light-mode .text-white {
     color: var(--uv-white) !important;
 }
@@ -414,9 +387,7 @@ body.light-mode .text-dark {
 
 /* TEMA CLARO — HERO DEL INICIO */
 
-
 /* Imagen diferente SOLO para el Inicio */
-
 body.light-mode.pagina-inicio .hero-uv {
     background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
     background-size: cover;
@@ -426,14 +397,12 @@ body.light-mode.pagina-inicio .hero-uv {
 
 
 /* Overlay claro para la imagen del Inicio */
-
 body.light-mode.pagina-inicio .hero-uv-overlay {
     background: linear-gradient(90deg, rgba(248, 250, 255, 0.92) 0%, rgba(248, 250, 255, 0.78) 38%, rgba(248, 250, 255, 0.38) 70%, rgba(248, 250, 255, 0.55) 100%);
 }
 
 
 /* Texto del Hero del Inicio en modo claro */
-
 body.light-mode.pagina-inicio .hero-uv h1 {
     color: #0B1120 !important;
 }
@@ -448,7 +417,6 @@ body.light-mode.pagina-inicio .hero-uv .eyebrow {
 
 
 /* Botón secundario del Inicio */
-
 body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light {
     color: #0B1120;
     border-color: #0B1120;
@@ -462,9 +430,7 @@ body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
 
 /* HERO DE PÁGINAS INTERNAS — MODO CLARO */
 
-
 /* Cartelera, Mis Boletos, Contacto, etc. */
-
 body.light-mode:not(.pagina-inicio) .hero-uv h1 {
     color: #0B1120 !important;
 }
@@ -479,7 +445,6 @@ body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
 
 
 /* CARDS */
-
 body.light-mode .card-uv {
     background-color: #FFFFFF;
     border: 1px solid rgba(15, 23, 42, 0.07);
@@ -492,7 +457,6 @@ body.light-mode .card-uv:hover {
 
 
 /* FAVORITOS */
-
 body.light-mode .btn-favorito {
     background: rgba(255, 255, 255, 0.92);
     color: #0F172A;
@@ -501,7 +465,6 @@ body.light-mode .btn-favorito {
 
 
 /* TITULOS DE PELICULAS */
-
 body.light-mode .movie-title {
     color: #0F172A;
 }
@@ -512,7 +475,6 @@ body.light-mode .movie-title:hover {
 
 
 /* ESTRENOS DESTACADOS */
-
 body.light-mode .movie-featured-title {
     color: #0F172A;
 }
@@ -523,7 +485,6 @@ body.light-mode .movie-featured-description {
 
 
 /* FORMULARIOS */
-
 body.light-mode .form-control,
 body.light-mode .form-select {
     background-color: #FFFFFF;
@@ -543,7 +504,6 @@ body.light-mode .form-select:focus {
 
 
 /* CHECKBOX */
-
 body.light-mode .form-check-label {
     color: var(--uv-gray) !important;
 }
@@ -559,7 +519,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Botón de tema (🌙 / ☀️) */
-
 #toggleTema {
     background: transparent;
     border: 1px solid var(--uv-gray);
@@ -581,7 +540,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Botón corazón dentro de cada card */
-
 .btn-favorito {
     background: rgba(10, 10, 10, 0.55);
     border: none;
@@ -604,7 +562,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Botón "❤️ 0" en el navbar */
-
 .btn-favoritos-nav {
     background: transparent;
     border: 1px solid var(--uv-gray);
@@ -640,7 +597,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Respeta la preferencia de "reducir movimiento" del sistema operativo */
-
 @media (prefers-reduced-motion: reduce) {
     .hero-uv::before {
         animation: none;
@@ -652,7 +608,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Paginación de resultados (botones 1, 2, 3...) */
-
 .pagination-uv .page-link {
     background-color: var(--uv-bg-card);
     border-color: rgba(184, 193, 209, 0.15);
@@ -677,7 +632,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Efecto "brillante" que se muestra mientras cargan los pósters */
-
 .skeleton-uv {
     background: linear-gradient(90deg, var(--uv-bg-card) 25%, var(--uv-bg-alt) 37%, var(--uv-bg-card) 63%);
     background-size: 400% 100%;
@@ -703,7 +657,6 @@ body.light-mode .form-check-input:checked {
 
 
 /* Tablas, por ejemplo para la lista de "Mis Boletos" */
-
 .table-uv {
     color: var(--uv-white);
     --bs-table-bg: transparent;
@@ -728,167 +681,99 @@ body.light-mode .form-check-input:checked {
 }
 
 
-/* CORRECCIÓN NAVBAR — RESERVAS Bootstrap + Tailwind utilizan la clase "collapse" con significados diferentes. */
+/* RESERVAS */
 
+/* Navbar: Bootstrap usa .collapse y Tailwind puede interferir
+   con la visibilidad del menú en esta página. */
 .navbar-uv .navbar-collapse.visible {
     visibility: visible !important;
 }
 
 
-/* MAPA DE ASIENTOS */
-
-.mapa-asientos-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 10px 0 15px;
+/* PANELES DE RESERVAS */
+.reservas-page .reserva-panel,
+.reservas-page .resumen-panel,
+.reservas-page > div > .grid > .bg-uvbgalt {
+    background-color: var(--uv-bg-alt);
+    border: 1px solid rgba(184, 193, 209, 0.08);
 }
 
 
-/* Grid de 8 columnas */
-
-#mapaAsientos.mapa-asientos {
+/* MAPA DE ASIENTOS */
+#mapaAsientos {
     display: grid !important;
     grid-template-columns: repeat(8, 32px) !important;
-    grid-auto-flow: row !important;
+    grid-auto-rows: 32px !important;
     gap: 8px !important;
     width: max-content !important;
     max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 0 auto 1.5rem !important;
+    justify-content: center !important;
 }
-
-
-/* Asientos */
 
 #mapaAsientos .asiento-uv {
     width: 32px !important;
     height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
     padding: 0 !important;
     margin: 0 !important;
     display: flex !important;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0 !important;
     font-size: 10px !important;
+    line-height: 1 !important;
+    transform: none !important;
+    scale: 1 !important;
 }
 
 
-/* MÓVIL — MAPA DE ASIENTOS */
-
-@media (max-width: 576px) {
-
-  .mapa-asientos-wrapper {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 4px 0 14px;
-  }
-
-  #mapaAsientos.mapa-asientos {
-    display: grid !important;
-
-    grid-template-columns: repeat(8, 28px) !important;
-    grid-template-rows: repeat(6, 28px) !important;
-
-    gap: 5px !important;
-
-    width: max-content !important;
-    max-width: none !important;
-
-    margin: 0 auto !important;
-  }
-
-  #mapaAsientos .asiento-uv {
-    width: 28px !important;
-    height: 28px !important;
-    min-width: 28px !important;
-    min-height: 28px !important;
-    max-width: 28px !important;
-    max-height: 28px !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
-    transform: none !important;
-    scale: 1 !important;
-  }
-
-  /* Mantener visible el estado seleccionado */
-  #mapaAsientos .asiento-uv.asiento-seleccionado {
-    width: 28px !important;
-    height: 28px !important;
-    min-width: 28px !important;
-    min-height: 28px !important;
-
-    padding: 0 !important;
-    margin: 0 !important;
-
+/* Asiento seleccionado: solo cambia color, nunca tamaño. */
+#mapaAsientos .asiento-uv.asiento-seleccionado {
     background-color: #2F6FED !important;
     color: #FFFFFF !important;
     border-color: #2F6FED !important;
-
     transform: none !important;
     scale: 1 !important;
-  }
 }
 
 
-/* Asiento seleccionado */
-
-.asiento-uv.asiento-seleccionado {
-    background-color: #2F6FED !important;
-    color: #FFFFFF !important;
-    border-color: #2F6FED !important;
-}
-
-
-/* RESERVAS — MODO CLARO COMPLETO */
-
-
-/* Fondo general */
-
+/* RESERVAS — MODO CLARO */
 body.light-mode .reservas-page {
-    background: #F5F7FB !important;
+    background-color: #F5F7FB !important;
     color: #0F172A !important;
 }
 
 
-/* Panel izquierdo y resumen */
-
+/* Paneles */
 body.light-mode .reservas-page .reserva-panel,
-body.light-mode .reservas-page .resumen-panel {
-    background: #FFFFFF !important;
+body.light-mode .reservas-page .resumen-panel,
+body.light-mode .reservas-page > div > .grid > .bg-uvbgalt {
+    background-color: #FFFFFF !important;
     color: #0F172A !important;
     border: 1px solid #E2E8F0 !important;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
 }
 
 
-/* Títulos */
-
+/* Títulos y textos */
 body.light-mode .reservas-page h1,
 body.light-mode .reservas-page h2 {
     color: #0F172A !important;
 }
 
-
-/* Etiquetas y textos secundarios */
-
 body.light-mode .reservas-page label,
-body.light-mode .reservas-page .text-uvgray {
+body.light-mode .reservas-page .text-uvgray,
+body.light-mode .reservas-page .pantalla-label {
     color: #64748B !important;
 }
-
-
-/* Texto blanco usado por Tailwind */
 
 body.light-mode .reservas-page .text-white {
     color: #0F172A !important;
 }
-
-
-/* Precio total */
 
 body.light-mode .reservas-page .text-uvglow {
     color: #2563EB !important;
@@ -896,7 +781,6 @@ body.light-mode .reservas-page .text-uvglow {
 
 
 /* Selects */
-
 body.light-mode .reservas-page #selectPelicula,
 body.light-mode .reservas-page #selectFuncion {
     background-color: #FFFFFF !important;
@@ -912,7 +796,6 @@ body.light-mode .reservas-page #selectFuncion option {
 
 
 /* Inputs */
-
 body.light-mode .reservas-page input {
     background-color: #FFFFFF !important;
     color: #0F172A !important;
@@ -931,51 +814,42 @@ body.light-mode .reservas-page select:focus {
 
 
 /* Línea de pantalla */
-
 body.light-mode .reservas-page .bg-gradient-to-r {
-    background-image: linear-gradient(to right, transparent, #2563EB, transparent) !important;
-}
-
-
-/* Texto "PANTALLA" */
-
-body.light-mode .reservas-page .uppercase {
-    color: #64748B !important;
+    background-image: linear-gradient(
+        to right,
+        transparent,
+        #2563EB,
+        transparent
+    ) !important;
 }
 
 
 /* ASIENTOS — MODO CLARO */
 
-
-/* Asiento disponible */
-
+/* Disponible */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled) {
     background-color: #FFFFFF !important;
     color: #334155 !important;
     border: 1px solid #94A3B8 !important;
 }
 
-
-/* Hover asiento disponible */
-
+/* Hover */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled):hover {
     background-color: #EFF6FF !important;
     color: #2563EB !important;
     border-color: #2563EB !important;
 }
 
-
-/* Asiento seleccionado */
-
-body.light-mode .reservas-page #mapaAsientos .asiento-seleccionado {
+/* Seleccionado */
+body.light-mode .reservas-page #mapaAsientos .asiento-uv.asiento-seleccionado {
     background-color: #2563EB !important;
     color: #FFFFFF !important;
     border-color: #2563EB !important;
+    transform: none !important;
+    scale: 1 !important;
 }
 
-
-/* Asiento ocupado */
-
+/* Ocupado */
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:disabled {
     background-color: #E2E8F0 !important;
     color: #94A3B8 !important;
@@ -985,8 +859,7 @@ body.light-mode .reservas-page #mapaAsientos .asiento-uv:disabled {
 }
 
 
-/* LEYENDA */
-
+/* LEYENDA — MODO CLARO */
 body.light-mode .reservas-page .bg-uvcard {
     background-color: #FFFFFF !important;
 }
@@ -1005,7 +878,6 @@ body.light-mode .reservas-page .border-white\/20 {
 
 
 /* BOTÓN CONFIRMAR */
-
 body.light-mode .reservas-page button[type="submit"] {
     background-color: #2563EB !important;
     color: #FFFFFF !important;
@@ -1016,14 +888,10 @@ body.light-mode .reservas-page button[type="submit"]:hover {
 }
 
 
-/* MENSAJES DE ERROR */
-
+/* MENSAJES */
 body.light-mode .reservas-page .text-red-400 {
     color: #DC2626 !important;
 }
-
-
-/* MENSAJE DE ÉXITO */
 
 body.light-mode .reservas-page #mensajeExito {
     background-color: #ECFDF5 !important;
@@ -1032,9 +900,44 @@ body.light-mode .reservas-page #mensajeExito {
 }
 
 
-/* MODO OSCURO */
+/* MÓVIL — MAPA DE ASIENTOS */
+@media (max-width: 576px) {
 
+    #mapaAsientos {
+        grid-template-columns: repeat(8, 28px) !important;
+        grid-auto-rows: 28px !important;
+        gap: 5px !important;
+        width: max-content !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    #mapaAsientos .asiento-uv,
+    #mapaAsientos .asiento-uv.asiento-seleccionado {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        transform: none !important;
+        scale: 1 !important;
+    }
+
+    #mapaAsientos .asiento-uv.asiento-seleccionado {
+        background-color: #2F6FED !important;
+        color: #FFFFFF !important;
+        border-color: #2F6FED !important;
+    }
+}
+
+
+/* Modo oscuro: los paneles vuelven a usar la variable del tema. */
 body:not(.light-mode) .reservas-page .reserva-panel,
-body:not(.light-mode) .reservas-page .resumen-panel {
-    background: #141C30;
+body:not(.light-mode) .reservas-page .resumen-panel,
+body:not(.light-mode) .reservas-page > div > .grid > .bg-uvbgalt {
+    background-color: var(--uv-bg-alt);
 }
