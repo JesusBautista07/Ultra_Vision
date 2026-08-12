@@ -752,7 +752,6 @@ body.light-mode .form-check-input:checked {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 4px 0 14px;
-    -webkit-overflow-scrolling: touch;
   }
 
   #mapaAsientos.mapa-asientos {
