@@ -742,30 +742,58 @@ body.light-mode .form-check-input:checked {
 }
 
 
-/* MÓVIL */
+/* MÓVIL — MAPA DE ASIENTOS */
+
 @media (max-width: 576px) {
 
   .mapa-asientos-wrapper {
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 4px 0 14px;
+    -webkit-overflow-scrolling: touch;
   }
 
   #mapaAsientos.mapa-asientos {
-    grid-template-columns: repeat(8, 40px) !important;
-    gap: 6px !important;
+    display: grid !important;
+
+    grid-template-columns: repeat(8, 28px) !important;
+    grid-template-rows: repeat(6, 28px) !important;
+
+    gap: 5px !important;
 
     width: max-content !important;
     max-width: none !important;
 
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 0 auto !important;
   }
 
   #mapaAsientos .asiento-uv {
-    width: 40px !important;
-    height: 40px !important;
-    font-size: 12px !important;
+    width: 28px !important;
+    height: 28px !important;
+
+    min-width: 28px !important;
+    min-height: 28px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    font-size: 9px !important;
+    line-height: 1 !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0 !important;
+  }
+
+  /* Mantener visible el estado seleccionado */
+  #mapaAsientos .asiento-uv.asiento-seleccionado {
+    background-color: #2F6FED !important;
+    color: #FFFFFF !important;
+    border-color: #2F6FED !important;
   }
 }
 
