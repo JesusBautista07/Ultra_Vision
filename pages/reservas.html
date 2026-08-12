@@ -7,9 +7,7 @@
     <title>UltraVision | Reservas</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5, solo para navbar y footer -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,8 +43,7 @@
     <nav class="navbar navbar-expand-lg navbar-uv sticky-top py-3">
         <div class="container">
             <a class="navbar-brand brand" href="../index.html">Ultra<span>Vision</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-                aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú de navegación">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse visible" id="navMenu">
@@ -58,8 +55,7 @@
                     <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
                 </ul>
                 <button id="toggleTema" class="ms-lg-3 mt-3 mt-lg-0 mx-auto mx-lg-0" title="Cambiar tema">☀️</button>
-                <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0"
-                    title="Películas favoritas guardadas">
+                <span class="btn-favoritos-nav ms-lg-2 mt-2 mt-lg-0 mx-auto mx-lg-0" title="Películas favoritas guardadas">
                     ❤️ <span id="badgeFavoritos" class="badge-favoritos">0</span>
                 </span>
             </div>
@@ -81,15 +77,13 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div>
                             <label for="selectPelicula" class="block text-uvgray text-sm mb-1">Película</label>
-                            <select id="selectPelicula"
-                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <select id="selectPelicula" class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
                                 <option value="">Cargando cartelera...</option>
                             </select>
                         </div>
                         <div>
                             <label for="selectFuncion" class="block text-uvgray text-sm mb-1">Horario</label>
-                            <select id="selectFuncion"
-                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <select id="selectFuncion" class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
                                 <option value="Hoy 3:00 PM">Hoy 3:00 PM</option>
                                 <option value="Hoy 6:00 PM">Hoy 6:00 PM</option>
                                 <option value="Hoy 9:00 PM">Hoy 9:00 PM</option>
@@ -100,29 +94,27 @@
                     </div>
 
                     <!-- Pantalla -->
-                    <div
-                        class="w-full h-2 bg-gradient-to-r from-transparent via-uvglow to-transparent rounded-full mb-1 opacity-70">
+                    <div class="w-full h-2 bg-gradient-to-r from-transparent via-uvglow to-transparent rounded-full mb-1 opacity-70">
                     </div>
                     <p class="text-center text-uvgray text-xs uppercase tracking-widest mb-6">Pantalla</p>
 
                     <!-- Grid de asientos, se dibuja por completo desde reservas.js -->
                     <div class="mapa-asientos-wrapper">
-                        <div id="mapaAsientos"
-                            class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto mapa-asientos">
+                        <div id="mapaAsientos" class="grid grid-cols-8 gap-2 justify-center mb-6 max-w-md mx-auto mapa-asientos">
                         </div>
                     </div>
 
                     <!-- Leyenda de colores -->
                     <div class="flex flex-wrap gap-4 justify-center text-xs text-uvgray">
                         <span class="flex items-center gap-1"><span
-                                class="w-4 h-4 rounded bg-uvcard border border-white/20 inline-block"></span>
-                            Disponible</span>
+                                class="w-4 h-4 rounded bg-uvcard border border-white/20 inline-block"></span> Disponible
+                        </span>
                         <span class="flex items-center gap-1"><span
-                                class="w-4 h-4 rounded bg-uvblue inline-block"></span>
-                            Seleccionado</span>
+                                class="w-4 h-4 rounded bg-uvblue inline-block"></span> Seleccionado
+                        </span>
                         <span class="flex items-center gap-1"><span
-                                class="w-4 h-4 rounded bg-white/10 inline-block"></span>
-                            Ocupado</span>
+                                class="w-4 h-4 rounded bg-white/10 inline-block"></span> Ocupado
+                        </span>
                     </div>
                 </div>
 
@@ -155,30 +147,26 @@
                     <form id="formReserva" class="space-y-3" novalidate>
                         <div>
                             <label for="inputNombre" class="block text-uvgray text-sm mb-1">Nombre completo</label>
-                            <input type="text" id="inputNombre" required
-                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
-                            <p class="text-red-400 text-xs mt-1 hidden" data-error="nombre">Por favor ingresa tu nombre
-                                completo.</p>
+                            <input type="text" id="inputNombre" required class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <p class="text-red-400 text-xs mt-1 hidden" data-error="nombre">Por favor ingresa tu nombre completo.
+                            </p>
                         </div>
 
                         <div>
                             <label for="inputEmail" class="block text-uvgray text-sm mb-1">Correo electrónico</label>
-                            <input type="email" id="inputEmail" required
-                                class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
-                            <p class="text-red-400 text-xs mt-1 hidden" data-error="email">Ingresa un correo electrónico
-                                válido.</p>
+                            <input type="email" id="inputEmail" required class="w-full rounded-lg bg-uvcard text-white border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-uvglow">
+                            <p class="text-red-400 text-xs mt-1 hidden" data-error="email">Ingresa un correo electrónico válido.
+                            </p>
                         </div>
 
                         <p class="text-red-400 text-xs hidden" data-error="asientos">Selecciona al menos un asiento.</p>
 
-                        <button type="submit"
-                            class="w-full bg-uvblue hover:bg-uvglow transition-colors text-white font-semibold rounded-lg py-2.5 mt-2">
+                        <button type="submit" class="w-full bg-uvblue hover:bg-uvglow transition-colors text-white font-semibold rounded-lg py-2.5 mt-2">
                             Confirmar reserva
                         </button>
                     </form>
 
-                    <div id="mensajeExito"
-                        class="hidden mt-4 bg-green-500/10 border border-green-400/30 text-green-300 text-sm rounded-lg p-3">
+                    <div id="mensajeExito" class="hidden mt-4 bg-green-500/10 border border-green-400/30 text-green-300 text-sm rounded-lg p-3">
                         ¡Reserva confirmada! Puedes verla en "Mis Boletos".
                     </div>
                 </div>

@@ -1,744 +1,775 @@
 /* Colores y tipografías principales del sitio, reutilizables en todo el CSS */
+
 :root {
-  --uv-bg: #0B1120;
-  --uv-bg-alt: #141C30;
-  --uv-bg-card: #1B2540;
-  --uv-blue: #2F6FED;
-  --uv-blue-glow: #5B8CFF;
-  --uv-gray: #B8C1D1;
-  --uv-black: #0A0A0A;
-  --uv-white: #FFFFFF;
-
-  --font-display: 'Orbitron', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  --uv-radius: 14px;
-  --uv-transition: 0.25s ease;
+    --uv-bg: #0B1120;
+    --uv-bg-alt: #141C30;
+    --uv-bg-card: #1B2540;
+    --uv-blue: #2F6FED;
+    --uv-blue-glow: #5B8CFF;
+    --uv-gray: #B8C1D1;
+    --uv-black: #0A0A0A;
+    --uv-white: #FFFFFF;
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --uv-radius: 14px;
+    --uv-transition: 0.25s ease;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: var(--uv-bg);
-  color: var(--uv-white);
-  font-family: var(--font-body);
-  margin: 0;
-  padding: 0;
+    background-color: var(--uv-bg);
+    color: var(--uv-white);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-body);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .brand {
-  font-family: var(--font-display);
-  letter-spacing: 0.5px;
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
 }
 
 a {
-  text-decoration: none;
-  color: var(--uv-blue-glow);
+    text-decoration: none;
+    color: var(--uv-blue-glow);
 }
 
+
 /* Navbar */
+
 .navbar-uv {
-  background-color: var(--uv-black);
-  border-bottom: 1px solid rgba(91, 140, 255, 0.15);
+    background-color: var(--uv-black);
+    border-bottom: 1px solid rgba(91, 140, 255, 0.15);
 }
 
 .navbar-uv .brand {
-  color: var(--uv-white);
-  font-size: 1.4rem;
+    color: var(--uv-white);
+    font-size: 1.4rem;
 }
 
 .navbar-uv .brand span {
-  color: var(--uv-blue-glow);
+    color: var(--uv-blue-glow);
 }
 
 .navbar-uv .nav-link {
-  color: var(--uv-gray) !important;
-  transition: color var(--uv-transition);
+    color: var(--uv-gray) !important;
+    transition: color var(--uv-transition);
 }
 
 .navbar-uv .nav-link:hover,
 .navbar-uv .nav-link.active {
-  color: var(--uv-blue-glow) !important;
+    color: var(--uv-blue-glow) !important;
 }
 
 
 /* HERO BASE - Se aplica a todas las páginas */
+
 .hero-uv {
-  position: relative;
-  overflow: hidden;
-
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%,
-      rgba(47, 111, 237, 0.35),
-      transparent 70%),
-    linear-gradient(180deg,
-      var(--uv-bg) 0%,
-      var(--uv-bg-alt) 100%);
-
-  padding: 5rem 1.5rem 4rem;
-  text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(47, 111, 237, 0.35), transparent 70%), linear-gradient(180deg, var(--uv-bg) 0%, var(--uv-bg-alt) 100%);
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
 }
+
 
 /* Línea de luz del hero */
+
 .hero-uv::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  width: 2px;
-  height: 60%;
-
-  background: linear-gradient(180deg,
-      rgba(91, 140, 255, 0.8),
-      transparent);
-
-  transform: translateX(-50%) rotate(0deg);
-  filter: blur(1px);
-  animation: uv-beam-sweep 6s ease-in-out infinite;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    width: 2px;
+    height: 60%;
+    background: linear-gradient(180deg, rgba(91, 140, 255, 0.8), transparent);
+    transform: translateX(-50%) rotate(0deg);
+    filter: blur(1px);
+    animation: uv-beam-sweep 6s ease-in-out infinite;
+    pointer-events: none;
 }
+
 
 /* Animación de la línea */
+
 @keyframes uv-beam-sweep {
-
-  0%,
-  100% {
-    transform: translateX(-50%) rotate(-12deg);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: translateX(-50%) rotate(12deg);
-    opacity: 0.9;
-  }
+    0%,
+    100% {
+        transform: translateX(-50%) rotate(-12deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(-50%) rotate(12deg);
+        opacity: 0.9;
+    }
 }
+
 
 /* Etiqueta del hero */
+
 .hero-uv .eyebrow {
-  color: var(--uv-blue-glow);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+    color: var(--uv-blue-glow);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
+
 
 /* Títulos de los heroes normales */
+
 .hero-uv h1 {
-  font-family: var(--font-body);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0.5rem 0 1rem;
+    font-family: var(--font-body);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 1rem;
 }
 
+
 /* Texto de los heroes normales */
+
 .hero-uv p {
-  color: var(--uv-gray);
-  max-width: 600px;
-  margin: 0 auto 2rem;
+    color: var(--uv-gray);
+    max-width: 600px;
+    margin: 0 auto 2rem;
 }
 
 
 /* HERO CINEMATOGRÁFICO - SOLO PARA INDEX */
+
 .pagina-inicio .hero-uv {
-  min-height: 72vh;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0;
-  text-align: left;
-
-  background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2000&q=85");
-  background-size: cover;
-  background-position: center;
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    text-align: left;
+    background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2000&q=85");
+    background-size: cover;
+    background-position: center;
 }
+
 
 /* Overlay oscuro solamente en Inicio */
-.pagina-inicio .hero-uv-overlay {
-  position: absolute;
-  inset: 0;
 
-  background: linear-gradient(90deg,
-      rgba(11, 17, 32, 0.96) 0%,
-      rgba(11, 17, 32, 0.82) 38%,
-      rgba(11, 17, 32, 0.48) 70%,
-      rgba(11, 17, 32, 0.72) 100%);
+.pagina-inicio .hero-uv-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(11, 17, 32, 0.96) 0%, rgba(11, 17, 32, 0.82) 38%, rgba(11, 17, 32, 0.48) 70%, rgba(11, 17, 32, 0.72) 100%);
 }
+
 
 /* Contenido del Inicio */
+
 .pagina-inicio .hero-uv-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+    position: relative;
+    z-index: 2;
+    width: 100%;
 }
+
 
 /* Texto del Inicio */
+
 .pagina-inicio .hero-uv-text {
-  max-width: 680px;
-  padding: 5rem 0;
+    max-width: 680px;
+    padding: 5rem 0;
 }
+
 
 /* Etiqueta del Inicio */
-.pagina-inicio .hero-uv .eyebrow {
-  display: inline-block;
-  margin-bottom: 1rem;
 
-  color: var(--uv-blue-glow);
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+.pagina-inicio .hero-uv .eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--uv-blue-glow);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
 }
+
 
 /* Título grande solamente en Inicio */
+
 .pagina-inicio .hero-uv h1 {
-  margin-bottom: 1.25rem;
-
-  font-family: var(--font-body);
-  font-size: clamp(3rem, 7vw, 5.8rem);
-  font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-
-  color: #fff;
+    margin-bottom: 1.25rem;
+    font-family: var(--font-body);
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    color: #fff;
 }
+
 
 /* Descripción del Inicio */
-.pagina-inicio .hero-uv p {
-  max-width: 560px;
-  margin-bottom: 2rem;
 
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 1.1rem;
-  line-height: 1.7;
+.pagina-inicio .hero-uv p {
+    max-width: 560px;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
+
 /* Botones del Inicio */
+
 .pagina-inicio .hero-uv-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
 }
 
 .pagina-inicio .hero-uv-actions .btn {
-  padding: 0.85rem 1.4rem;
-  border-radius: 8px;
-  font-weight: 600;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+    padding: 0.85rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .pagina-inicio .hero-uv-actions .btn:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
 /* RESPONSIVE */
+
 @media (max-width: 768px) {
-
-  /* Hero normal de todas las páginas */
-  .hero-uv {
-    padding: 3.5rem 1rem 2.5rem;
-  }
-
-  /* Hero cinematográfico del Inicio */
-  .pagina-inicio .hero-uv {
-    min-height: 75vh;
-    padding: 0;
-    background-position: center;
-  }
-
-  .pagina-inicio .hero-uv-text {
-    padding: 4rem 1rem;
-  }
-
-  .pagina-inicio .hero-uv h1 {
-    font-size: clamp(2.8rem, 13vw, 4rem);
-  }
-
-  .pagina-inicio .hero-uv p {
-    font-size: 1rem;
-  }
-
-  .pagina-inicio .hero-uv-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pagina-inicio .hero-uv-actions .btn {
-    text-align: center;
-  }
+    /* Hero normal de todas las páginas */
+    .hero-uv {
+        padding: 3.5rem 1rem 2.5rem;
+    }
+    /* Hero cinematográfico del Inicio */
+    .pagina-inicio .hero-uv {
+        min-height: 75vh;
+        padding: 0;
+        background-position: center;
+    }
+    .pagina-inicio .hero-uv-text {
+        padding: 4rem 1rem;
+    }
+    .pagina-inicio .hero-uv h1 {
+        font-size: clamp(2.8rem, 13vw, 4rem);
+    }
+    .pagina-inicio .hero-uv p {
+        font-size: 1rem;
+    }
+    .pagina-inicio .hero-uv-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .pagina-inicio .hero-uv-actions .btn {
+        text-align: center;
+    }
 }
 
 
 /* Botones */
+
 .btn-uv-primary {
-  background-color: var(--uv-blue);
-  color: var(--uv-white);
-  border: none;
-  border-radius: var(--uv-radius);
-  padding: 0.7rem 1.8rem;
-  font-weight: 600;
-  transition: background-color var(--uv-transition), transform var(--uv-transition);
+    background-color: var(--uv-blue);
+    color: var(--uv-white);
+    border: none;
+    border-radius: var(--uv-radius);
+    padding: 0.7rem 1.8rem;
+    font-weight: 600;
+    transition: background-color var(--uv-transition), transform var(--uv-transition);
 }
 
 .btn-uv-primary:hover {
-  background-color: var(--uv-blue-glow);
-  color: var(--uv-white);
-  transform: translateY(-2px);
+    background-color: var(--uv-blue-glow);
+    color: var(--uv-white);
+    transform: translateY(-2px);
 }
 
 .btn-uv-outline {
-  background-color: transparent;
-  color: var(--uv-white);
-  border: 1px solid var(--uv-gray);
-  border-radius: var(--uv-radius);
-  padding: 0.7rem 1.8rem;
-  transition: border-color var(--uv-transition), color var(--uv-transition);
+    background-color: transparent;
+    color: var(--uv-white);
+    border: 1px solid var(--uv-gray);
+    border-radius: var(--uv-radius);
+    padding: 0.7rem 1.8rem;
+    transition: border-color var(--uv-transition), color var(--uv-transition);
 }
 
 .btn-uv-outline:hover {
-  border-color: var(--uv-blue-glow);
-  color: var(--uv-blue-glow);
+    border-color: var(--uv-blue-glow);
+    color: var(--uv-blue-glow);
 }
 
+
 /* Tarjetas de película */
+
 .card-uv {
-  position: relative;
-  /* para poder ubicar el botón de favorito adentro */
-  background-color: var(--uv-bg-card);
-  border: 1px solid rgba(184, 193, 209, 0.08);
-  border-radius: var(--uv-radius);
-  overflow: hidden;
-  transition: transform var(--uv-transition), box-shadow var(--uv-transition);
+    position: relative;
+    /* para poder ubicar el botón de favorito adentro */
+    background-color: var(--uv-bg-card);
+    border: 1px solid rgba(184, 193, 209, 0.08);
+    border-radius: var(--uv-radius);
+    overflow: hidden;
+    transition: transform var(--uv-transition), box-shadow var(--uv-transition);
 }
 
 .card-uv:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(47, 111, 237, 0.25);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(47, 111, 237, 0.25);
 }
 
 .card-uv img {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  /* proporción de póster de cine */
-  object-fit: cover;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    /* proporción de póster de cine */
+    object-fit: cover;
 }
 
 .card-uv .card-body {
-  color: var(--uv-white);
+    color: var(--uv-white);
 }
 
 .card-uv .card-body small {
-  color: var(--uv-gray);
+    color: var(--uv-gray);
 }
+
 
 /* Línea azul a la izquierda de cada título de sección */
+
 .section-title {
-  border-left: 4px solid var(--uv-blue);
-  padding-left: 0.8rem;
-  margin-bottom: 1.5rem;
+    border-left: 4px solid var(--uv-blue);
+    padding-left: 0.8rem;
+    margin-bottom: 1.5rem;
 }
+
 
 /* Footer */
+
 .footer-uv {
-  background-color: var(--uv-black);
-  color: var(--uv-gray);
-  padding: 2.5rem 1.5rem 1.5rem;
-  border-top: 1px solid rgba(91, 140, 255, 0.15);
+    background-color: var(--uv-black);
+    color: var(--uv-gray);
+    padding: 2.5rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(91, 140, 255, 0.15);
 }
 
-
 .footer-uv a {
-  color: var(--uv-gray);
+    color: var(--uv-gray);
 }
 
 .footer-uv a:hover {
-  color: var(--uv-blue-glow);
+    color: var(--uv-blue-glow);
 }
 
 
 /* Contorno visible al navegar con teclado (accesibilidad) */
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--uv-blue-glow);
-  outline-offset: 2px;
+    outline: 2px solid var(--uv-blue-glow);
+    outline-offset: 2px;
 }
+
 
 /* Modo claro: al agregar la clase "light-mode" al body (con JS),
   estas variables se sobrescriben y todo el sitio cambia de color */
+
 body.light-mode {
-  --uv-bg: #F5F7FB;
-  --uv-bg-alt: #E9EEF7;
-  --uv-bg-card: #FFFFFF;
-
-  --uv-blue: #2563EB;
-  --uv-blue-glow: #3B82F6;
-
-  --uv-gray: #475569;
-  --uv-black: #FFFFFF;
-  --uv-white: #0F172A;
+    --uv-bg: #F5F7FB;
+    --uv-bg-alt: #E9EEF7;
+    --uv-bg-card: #FFFFFF;
+    --uv-blue: #2563EB;
+    --uv-blue-glow: #3B82F6;
+    --uv-gray: #475569;
+    --uv-black: #FFFFFF;
+    --uv-white: #0F172A;
 }
 
+
 /* Textos de Bootstrap */
+
 body.light-mode .text-white {
-  color: var(--uv-white) !important;
+    color: var(--uv-white) !important;
 }
 
 body.light-mode .text-secondary {
-  color: var(--uv-gray) !important;
+    color: var(--uv-gray) !important;
 }
 
 body.light-mode .text-dark {
-  color: var(--uv-white) !important;
+    color: var(--uv-white) !important;
 }
 
 
 /* TEMA CLARO — HERO DEL INICIO */
 
+
 /* Imagen diferente SOLO para el Inicio */
+
 body.light-mode.pagina-inicio .hero-uv {
-  background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url("https://img.magnific.com/foto-gratis/auditorio-cine-vacio-sillas_651396-2891.jpg?semt=ais_test_b&w=740&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 /* Overlay claro para la imagen del Inicio */
+
 body.light-mode.pagina-inicio .hero-uv-overlay {
-  background: linear-gradient(90deg,
-      rgba(248, 250, 255, 0.92) 0%,
-      rgba(248, 250, 255, 0.78) 38%,
-      rgba(248, 250, 255, 0.38) 70%,
-      rgba(248, 250, 255, 0.55) 100%);
+    background: linear-gradient(90deg, rgba(248, 250, 255, 0.92) 0%, rgba(248, 250, 255, 0.78) 38%, rgba(248, 250, 255, 0.38) 70%, rgba(248, 250, 255, 0.55) 100%);
 }
 
+
 /* Texto del Hero del Inicio en modo claro */
+
 body.light-mode.pagina-inicio .hero-uv h1 {
-  color: #0B1120 !important;
+    color: #0B1120 !important;
 }
 
 body.light-mode.pagina-inicio .hero-uv p {
-  color: #334155 !important;
+    color: #334155 !important;
 }
 
 body.light-mode.pagina-inicio .hero-uv .eyebrow {
-  color: #2563EB !important;
+    color: #2563EB !important;
 }
 
+
 /* Botón secundario del Inicio */
+
 body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light {
-  color: #0B1120;
-  border-color: #0B1120;
+    color: #0B1120;
+    border-color: #0B1120;
 }
 
 body.light-mode.pagina-inicio .hero-uv-actions .btn-outline-light:hover {
-  color: #2563EB;
-  border-color: #2563EB;
+    color: #2563EB;
+    border-color: #2563EB;
 }
+
 
 /* HERO DE PÁGINAS INTERNAS — MODO CLARO */
 
+
 /* Cartelera, Mis Boletos, Contacto, etc. */
+
 body.light-mode:not(.pagina-inicio) .hero-uv h1 {
-  color: #0B1120 !important;
+    color: #0B1120 !important;
 }
 
 body.light-mode:not(.pagina-inicio) .hero-uv p {
-  color: #475569 !important;
+    color: #475569 !important;
 }
 
 body.light-mode:not(.pagina-inicio) .hero-uv .eyebrow {
-  color: #2563EB !important;
+    color: #2563EB !important;
 }
 
 
 /* CARDS */
+
 body.light-mode .card-uv {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.07);
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    background-color: #FFFFFF;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .card-uv:hover {
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.14);
 }
+
 
 /* FAVORITOS */
+
 body.light-mode .btn-favorito {
-  background: rgba(255, 255, 255, 0.92);
-  color: #0F172A;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    color: #0F172A;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
 }
 
+
 /* TITULOS DE PELICULAS */
+
 body.light-mode .movie-title {
-  color: #0F172A;
+    color: #0F172A;
 }
 
 body.light-mode .movie-title:hover {
-  color: var(--uv-blue);
+    color: var(--uv-blue);
 }
 
+
 /* ESTRENOS DESTACADOS */
+
 body.light-mode .movie-featured-title {
-  color: #0F172A;
+    color: #0F172A;
 }
 
 body.light-mode .movie-featured-description {
-  color: var(--uv-gray);
+    color: var(--uv-gray);
 }
 
+
 /* FORMULARIOS */
+
 body.light-mode .form-control,
 body.light-mode .form-select {
-  background-color: #FFFFFF;
-  color: #0F172A;
-  border-color: #CBD5E1;
+    background-color: #FFFFFF;
+    color: #0F172A;
+    border-color: #CBD5E1;
 }
 
 body.light-mode .form-control::placeholder {
-  color: #64748B;
+    color: #64748B;
 }
 
 body.light-mode .form-control:focus,
 body.light-mode .form-select:focus {
-  border-color: var(--uv-blue);
-  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+    border-color: var(--uv-blue);
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
 }
 
+
 /* CHECKBOX */
+
 body.light-mode .form-check-label {
-  color: var(--uv-gray) !important;
+    color: var(--uv-gray) !important;
 }
 
 body.light-mode .form-check-input {
-  border-color: #94A3B8;
+    border-color: #94A3B8;
 }
 
 body.light-mode .form-check-input:checked {
-  background-color: var(--uv-blue);
-  border-color: var(--uv-blue);
+    background-color: var(--uv-blue);
+    border-color: var(--uv-blue);
 }
 
+
 /* Botón de tema (🌙 / ☀️) */
+
 #toggleTema {
-  background: transparent;
-  border: 1px solid var(--uv-gray);
-  color: var(--uv-white);
-  border-radius: 50px;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  transition: border-color var(--uv-transition), transform var(--uv-transition);
+    background: transparent;
+    border: 1px solid var(--uv-gray);
+    color: var(--uv-white);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: border-color var(--uv-transition), transform var(--uv-transition);
 }
 
 #toggleTema:hover {
-  border-color: var(--uv-blue-glow);
-  transform: rotate(15deg);
+    border-color: var(--uv-blue-glow);
+    transform: rotate(15deg);
 }
 
+
 /* Botón corazón dentro de cada card */
+
 .btn-favorito {
-  background: rgba(10, 10, 10, 0.55);
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 1.1rem;
-  transition: transform var(--uv-transition);
+    background: rgba(10, 10, 10, 0.55);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1rem;
+    transition: transform var(--uv-transition);
 }
 
 .btn-favorito:hover {
-  transform: scale(1.15);
+    transform: scale(1.15);
 }
 
+
 /* Botón "❤️ 0" en el navbar */
+
 .btn-favoritos-nav {
-  background: transparent;
-  border: 1px solid var(--uv-gray);
-  color: var(--uv-white);
-  border-radius: 50px;
-  padding: 0.35rem 0.7rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: border-color var(--uv-transition), color var(--uv-transition);
+    background: transparent;
+    border: 1px solid var(--uv-gray);
+    color: var(--uv-white);
+    border-radius: 50px;
+    padding: 0.35rem 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: border-color var(--uv-transition), color var(--uv-transition);
 }
 
 .btn-favoritos-nav:hover {
-  border-color: var(--uv-blue-glow);
-  color: var(--uv-blue-glow);
+    border-color: var(--uv-blue-glow);
+    color: var(--uv-blue-glow);
 }
 
 .badge-favoritos {
-  background-color: var(--uv-blue);
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 999px;
-  min-width: 18px;
-  height: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-  position: relative;
-  top: -1px;
+    background-color: var(--uv-blue);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 999px;
+    min-width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    position: relative;
+    top: -1px;
 }
+
 
 /* Respeta la preferencia de "reducir movimiento" del sistema operativo */
-@media (prefers-reduced-motion: reduce) {
-  .hero-uv::before {
-    animation: none;
-  }
 
-  .card-uv:hover {
-    transform: none;
-  }
+@media (prefers-reduced-motion: reduce) {
+    .hero-uv::before {
+        animation: none;
+    }
+    .card-uv:hover {
+        transform: none;
+    }
 }
 
+
 /* Paginación de resultados (botones 1, 2, 3...) */
+
 .pagination-uv .page-link {
-  background-color: var(--uv-bg-card);
-  border-color: rgba(184, 193, 209, 0.15);
-  color: var(--uv-gray);
+    background-color: var(--uv-bg-card);
+    border-color: rgba(184, 193, 209, 0.15);
+    color: var(--uv-gray);
 }
 
 .pagination-uv .page-item.active .page-link {
-  background-color: var(--uv-blue);
-  border-color: var(--uv-blue);
-  color: #fff;
+    background-color: var(--uv-blue);
+    border-color: var(--uv-blue);
+    color: #fff;
 }
 
 .pagination-uv .page-link:hover {
-  background-color: var(--uv-bg-alt);
-  color: var(--uv-blue-glow);
+    background-color: var(--uv-bg-alt);
+    color: var(--uv-blue-glow);
 }
 
 .pagination-uv .page-item.disabled .page-link {
-  background-color: var(--uv-bg-card);
-  opacity: 0.4;
+    background-color: var(--uv-bg-card);
+    opacity: 0.4;
 }
 
+
 /* Efecto "brillante" que se muestra mientras cargan los pósters */
+
 .skeleton-uv {
-  background: linear-gradient(90deg, var(--uv-bg-card) 25%, var(--uv-bg-alt) 37%, var(--uv-bg-card) 63%);
-  background-size: 400% 100%;
-  animation: skeletonShine 1.4s ease infinite;
-  border-radius: var(--uv-radius);
-  aspect-ratio: 2 / 3;
+    background: linear-gradient(90deg, var(--uv-bg-card) 25%, var(--uv-bg-alt) 37%, var(--uv-bg-card) 63%);
+    background-size: 400% 100%;
+    animation: skeletonShine 1.4s ease infinite;
+    border-radius: var(--uv-radius);
+    aspect-ratio: 2 / 3;
 }
 
 @keyframes skeletonShine {
-  0% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0 50%;
-  }
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton-uv {
-    animation: none;
-  }
+    .skeleton-uv {
+        animation: none;
+    }
 }
 
+
 /* Tablas, por ejemplo para la lista de "Mis Boletos" */
+
 .table-uv {
-  color: var(--uv-white);
-  --bs-table-bg: transparent;
+    color: var(--uv-white);
+    --bs-table-bg: transparent;
 }
 
 .table-uv th {
-  color: var(--uv-blue-glow);
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+    color: var(--uv-blue-glow);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .table-uv td {
-  border-color: rgba(184, 193, 209, 0.1) !important;
-  vertical-align: middle;
+    border-color: rgba(184, 193, 209, 0.1) !important;
+    vertical-align: middle;
 }
 
 .table-uv caption {
-  color: var(--uv-gray);
+    color: var(--uv-gray);
 }
 
 
 /* CORRECCIÓN NAVBAR — RESERVAS Bootstrap + Tailwind utilizan la clase "collapse" con significados diferentes. */
+
 .navbar-uv .navbar-collapse.visible {
-  visibility: visible !important;
+    visibility: visible !important;
 }
 
 
 /* MAPA DE ASIENTOS */
+
 .mapa-asientos-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 10px 0 15px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 0 15px;
 }
+
 
 /* Grid de 8 columnas */
+
 #mapaAsientos.mapa-asientos {
-  display: grid !important;
-  grid-template-columns: repeat(8, 32px) !important;
-  grid-auto-flow: row !important;
-  gap: 8px !important;
-
-  width: max-content !important;
-  max-width: 100% !important;
-
-  margin-left: auto !important;
-  margin-right: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(8, 32px) !important;
+    grid-auto-flow: row !important;
+    gap: 8px !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
+
 /* Asientos */
+
 #mapaAsientos .asiento-uv {
-  width: 32px !important;
-  height: 32px !important;
-
-  padding: 0 !important;
-  margin: 0 !important;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 10px !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px !important;
 }
 
 
@@ -804,175 +835,206 @@ body.light-mode .form-check-input:checked {
 
 
 /* Asiento seleccionado */
+
 .asiento-uv.asiento-seleccionado {
-  background-color: #2F6FED !important;
-  color: #FFFFFF !important;
-  border-color: #2F6FED !important;
+    background-color: #2F6FED !important;
+    color: #FFFFFF !important;
+    border-color: #2F6FED !important;
 }
 
 
 /* RESERVAS — MODO CLARO COMPLETO */
 
+
 /* Fondo general */
+
 body.light-mode .reservas-page {
-  background: #F5F7FB !important;
-  color: #0F172A !important;
+    background: #F5F7FB !important;
+    color: #0F172A !important;
 }
+
 
 /* Panel izquierdo y resumen */
+
 body.light-mode .reservas-page .reserva-panel,
 body.light-mode .reservas-page .resumen-panel {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid #E2E8F0 !important;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border: 1px solid #E2E8F0 !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
 }
+
 
 /* Títulos */
+
 body.light-mode .reservas-page h1,
 body.light-mode .reservas-page h2 {
-  color: #0F172A !important;
+    color: #0F172A !important;
 }
+
 
 /* Etiquetas y textos secundarios */
+
 body.light-mode .reservas-page label,
 body.light-mode .reservas-page .text-uvgray {
-  color: #64748B !important;
+    color: #64748B !important;
 }
+
 
 /* Texto blanco usado por Tailwind */
+
 body.light-mode .reservas-page .text-white {
-  color: #0F172A !important;
+    color: #0F172A !important;
 }
+
 
 /* Precio total */
+
 body.light-mode .reservas-page .text-uvglow {
-  color: #2563EB !important;
+    color: #2563EB !important;
 }
 
+
 /* Selects */
+
 body.light-mode .reservas-page #selectPelicula,
 body.light-mode .reservas-page #selectFuncion {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
 }
 
 body.light-mode .reservas-page #selectPelicula option,
 body.light-mode .reservas-page #selectFuncion option {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
 }
 
+
 /* Inputs */
+
 body.light-mode .reservas-page input {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
 }
 
 body.light-mode .reservas-page input::placeholder {
-  color: #94A3B8 !important;
+    color: #94A3B8 !important;
 }
 
 body.light-mode .reservas-page input:focus,
 body.light-mode .reservas-page select:focus {
-  border-color: #2563EB !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
 }
+
 
 /* Línea de pantalla */
+
 body.light-mode .reservas-page .bg-gradient-to-r {
-  background-image: linear-gradient(to right,
-      transparent,
-      #2563EB,
-      transparent) !important;
+    background-image: linear-gradient(to right, transparent, #2563EB, transparent) !important;
 }
 
+
 /* Texto "PANTALLA" */
+
 body.light-mode .reservas-page .uppercase {
-  color: #64748B !important;
+    color: #64748B !important;
 }
 
 
 /* ASIENTOS — MODO CLARO */
 
+
 /* Asiento disponible */
+
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled) {
-  background-color: #FFFFFF !important;
-  color: #334155 !important;
-  border: 1px solid #94A3B8 !important;
+    background-color: #FFFFFF !important;
+    color: #334155 !important;
+    border: 1px solid #94A3B8 !important;
 }
+
 
 /* Hover asiento disponible */
+
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:not(.asiento-seleccionado):not(:disabled):hover {
-  background-color: #EFF6FF !important;
-  color: #2563EB !important;
-  border-color: #2563EB !important;
+    background-color: #EFF6FF !important;
+    color: #2563EB !important;
+    border-color: #2563EB !important;
 }
+
 
 /* Asiento seleccionado */
+
 body.light-mode .reservas-page #mapaAsientos .asiento-seleccionado {
-  background-color: #2563EB !important;
-  color: #FFFFFF !important;
-  border-color: #2563EB !important;
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
+    border-color: #2563EB !important;
 }
 
+
 /* Asiento ocupado */
+
 body.light-mode .reservas-page #mapaAsientos .asiento-uv:disabled {
-  background-color: #E2E8F0 !important;
-  color: #94A3B8 !important;
-  border-color: #CBD5E1 !important;
-  cursor: not-allowed !important;
-  opacity: 1 !important;
+    background-color: #E2E8F0 !important;
+    color: #94A3B8 !important;
+    border-color: #CBD5E1 !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
 }
 
 
 /* LEYENDA */
+
 body.light-mode .reservas-page .bg-uvcard {
-  background-color: #FFFFFF !important;
+    background-color: #FFFFFF !important;
 }
 
 body.light-mode .reservas-page .bg-uvblue {
-  background-color: #2563EB !important;
+    background-color: #2563EB !important;
 }
 
 body.light-mode .reservas-page .bg-white\/10 {
-  background-color: #E2E8F0 !important;
+    background-color: #E2E8F0 !important;
 }
 
 body.light-mode .reservas-page .border-white\/20 {
-  border-color: #94A3B8 !important;
+    border-color: #94A3B8 !important;
 }
 
 
 /* BOTÓN CONFIRMAR */
+
 body.light-mode .reservas-page button[type="submit"] {
-  background-color: #2563EB !important;
-  color: #FFFFFF !important;
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
 }
 
 body.light-mode .reservas-page button[type="submit"]:hover {
-  background-color: #1D4ED8 !important;
+    background-color: #1D4ED8 !important;
 }
 
 
 /* MENSAJES DE ERROR */
+
 body.light-mode .reservas-page .text-red-400 {
-  color: #DC2626 !important;
+    color: #DC2626 !important;
 }
 
 
 /* MENSAJE DE ÉXITO */
+
 body.light-mode .reservas-page #mensajeExito {
-  background-color: #ECFDF5 !important;
-  border-color: #86EFAC !important;
-  color: #15803D !important;
+    background-color: #ECFDF5 !important;
+    border-color: #86EFAC !important;
+    color: #15803D !important;
 }
 
 
 /* MODO OSCURO */
+
 body:not(.light-mode) .reservas-page .reserva-panel,
 body:not(.light-mode) .reservas-page .resumen-panel {
-  background: #141C30;
+    background: #141C30;
 }
